@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grow in Grace – Short Course</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #0a4a35;
+      --green-mid:  #1D9E75;
+      --green-soft: #E1F5EE;
+      --green-pale: #f2fbf7;
+      --gold:       #c9a84c;
+      --gold-soft:  #fdf6e3;
+      --ink:        #111a14;
+      --ink-mid:    #3a4a3e;
+      --ink-light:  #6b7a6e;
+      --cream:      #faf9f6;
+      --white:      #ffffff;
+      --border:     rgba(10,74,53,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 60px;
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 600; color: var(--green-deep);
+      letter-spacing: 0.02em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: var(--ink-mid);
+      text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-mid); }
+    .nav-cta {
+      background: var(--green-deep); color: var(--white) !important;
+      padding: 7px 18px; border-radius: 40px;
+      font-size: 13px !important; font-weight: 500 !important;
+      transition: background 0.2s !important; cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--green-mid) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 60px; position: relative; overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 3rem 5rem 5rem; position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--green-mid); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--green-mid);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6vw, 80px); font-weight: 500;
+      line-height: 1.05; color: var(--green-deep); margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-mid); }
+    .hero-desc {
+      font-size: 16px; font-weight: 300; line-height: 1.8;
+      color: var(--ink-mid); max-width: 420px; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--green-deep); color: var(--white);
+      padding: 14px 32px; border-radius: 40px;
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s; display: inline-block;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+    .btn-secondary {
+      color: var(--green-deep); font-size: 14px; font-weight: 400;
+      text-decoration: none; letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 6px;
+      border-bottom: 1px solid var(--border); padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--green-mid); border-color: var(--green-mid); }
+    .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2.5rem; }
+    .pill {
+      font-size: 12px; font-weight: 400; padding: 5px 14px;
+      border-radius: 40px; border: 0.5px solid var(--border);
+      color: var(--ink-mid); background: var(--white);
+    }
+    .pill-green { background: var(--green-soft); border-color: rgba(29,158,117,0.3); color: var(--green-deep); }
+    .hero-right { position: relative; overflow: hidden; background: var(--green-deep); }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 30% 40%, rgba(29,158,117,0.35) 0%, transparent 55%),
+        radial-gradient(circle at 75% 70%, rgba(201,168,76,0.2) 0%, transparent 45%);
+    }
+    .hero-lines {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
+    }
+    .hero-card {
+      position: absolute; bottom: 2.5rem; left: 2.5rem; right: 2.5rem;
+      background: rgba(255,255,255,0.07); backdrop-filter: blur(8px);
+      border: 0.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 1.5rem;
+    }
+    .hero-card-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+    .hero-stat-row { display: flex; gap: 1.5rem; }
+    .hero-stat { flex: 1; }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 500; color: var(--white); line-height: 1; margin-bottom: 4px;
+    }
+    .hero-stat-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+    .hero-verse {
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 0.5px solid rgba(255,255,255,0.1);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-style: italic; color: rgba(255,255,255,0.7); line-height: 1.6;
+    }
+    .hero-verse cite { font-style: normal; font-size: 12px; color: var(--gold); display: block; margin-top: 6px; }
+    .hero-center-ornament {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 220px; font-weight: 600;
+      color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; white-space: nowrap;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 5rem; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--green-mid);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; width: 20px; height: 1px; background: var(--green-mid); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 48px); font-weight: 500;
+      line-height: 1.15; color: var(--green-deep); margin-bottom: 1rem;
+    }
+    .section-title em { font-style: italic; color: var(--green-mid); }
+    .section-body { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--ink-mid); max-width: 560px; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--white); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-right { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-card {
+      background: var(--green-pale); border: 0.5px solid rgba(29,158,117,0.2);
+      border-radius: 12px; padding: 1.25rem 1.5rem; border-left: 3px solid var(--green-mid);
+    }
+    .about-card h3 { font-size: 13px; font-weight: 500; color: var(--green-deep); letter-spacing: 0.04em; margin-bottom: 6px; }
+    .about-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+
+    /* ── OUTCOMES ── */
+    .outcomes { background: var(--cream); }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .outcome-card {
+      background: var(--white); border: 0.5px solid var(--border);
+      border-radius: 16px; padding: 2rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .outcome-card:hover { border-color: var(--green-mid); transform: translateY(-3px); }
+    .outcome-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 500; color: var(--green-soft); line-height: 1; margin-bottom: 1rem; }
+    .outcome-card h3 { font-size: 15px; font-weight: 500; color: var(--green-deep); margin-bottom: 8px; line-height: 1.3; }
+    .outcome-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+
+    /* ── CURRICULUM ── */
+    .curriculum { background: var(--green-deep); position: relative; overflow: hidden; }
+    .curriculum::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 85% 20%, rgba(201,168,76,0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 80%, rgba(29,158,117,0.2) 0%, transparent 40%);
+    }
+    .curriculum .section-label { color: var(--gold); }
+    .curriculum .section-label::before { background: var(--gold); }
+    .curriculum .section-title { color: var(--white); }
+    .curriculum .section-body { color: rgba(255,255,255,0.6); }
+    .curriculum-inner { position: relative; z-index: 1; }
+    .curriculum-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      margin-top: 3.5rem; border: 0.5px solid rgba(255,255,255,0.1);
+      border-radius: 16px; overflow: hidden;
+    }
+    .week-card {
+      background: rgba(255,255,255,0.04); padding: 2rem; position: relative;
+      border-right: 0.5px solid rgba(255,255,255,0.07);
+      border-bottom: 0.5px solid rgba(255,255,255,0.07);
+      transition: background 0.2s;
+    }
+    .week-card:hover { background: rgba(255,255,255,0.07); }
+    .week-card:nth-child(2n) { border-right: none; }
+    .week-badge {
+      display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); border: 0.5px solid rgba(201,168,76,0.4);
+      padding: 3px 10px; border-radius: 40px; margin-bottom: 1rem;
+    }
+    .week-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+    .week-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+    .week-card .ref { margin-top: 1rem; font-size: 11px; color: rgba(255,255,255,0.25); font-style: italic; }
+    .week-culmination { grid-column: 1 / -1; background: rgba(201,168,76,0.08); border-top: 0.5px solid rgba(201,168,76,0.2) !important; }
+    .week-culmination .week-badge { color: var(--gold); }
+    .week-culmination h3 { color: var(--gold); }
+
+    /* ── SCHEDULE ── */
+    .schedule { background: var(--white); }
+    .schedule-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .schedule-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    .schedule-table th {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-light); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
+    }
+    .schedule-table td { padding: 12px; font-size: 14px; font-weight: 300; color: var(--ink-mid); border-bottom: 0.5px solid var(--border); }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table td:first-child { font-weight: 500; color: var(--green-deep); width: 100px; }
+    .tag-lecture { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 40px; background: var(--green-soft); color: var(--green-deep); font-weight: 500; letter-spacing: 0.05em; margin-left: 6px; }
+    .tag-face { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 40px; background: var(--gold-soft); color: #7a5c1a; font-weight: 500; letter-spacing: 0.05em; margin-left: 6px; }
+    .policy-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .policy-item { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+    .policy-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); margin-top: 8px; flex-shrink: 0; }
+
+    /* ── INSTRUCTORS ── */
+    .instructors { background: var(--cream); }
+    .instructors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
+    .instructor-card {
+      background: var(--white); border: 0.5px solid var(--border);
+      border-radius: 16px; padding: 1.5rem 1.25rem; text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .instructor-card:hover { border-color: var(--green-mid); transform: translateY(-2px); }
+    .instructor-avatar {
+      width: 56px; height: 56px; border-radius: 50%; background: var(--green-deep);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--white);
+    }
+    .instructor-card h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .instructor-card .role { font-size: 12px; color: var(--green-mid); font-weight: 400; margin-bottom: 4px; }
+    .instructor-card .church { font-size: 12px; color: var(--ink-light); font-weight: 300; }
+
+    /* ── ENROLL ── */
+    .enroll { background: var(--green-deep); text-align: center; padding: 7rem 5rem; position: relative; overflow: hidden; }
+    .enroll::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(29,158,117,0.3) 0%, transparent 60%);
+    }
+    .enroll-inner { position: relative; z-index: 1; }
+    .enroll .section-label { justify-content: center; color: var(--gold); }
+    .enroll .section-label::before { background: var(--gold); }
+    .enroll .section-title { color: var(--white); margin: 0 auto 1rem; max-width: 600px; }
+    .enroll-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .enroll-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-light {
+      background: var(--white); color: var(--green-deep);
+      padding: 14px 36px; border-radius: 40px;
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s; display: inline-block;
+      border: none; cursor: pointer;
+    }
+    .btn-light:hover { background: var(--green-soft); transform: translateY(-1px); }
+    .btn-ghost {
+      color: rgba(255,255,255,0.7); padding: 14px 24px; border-radius: 40px;
+      border: 0.5px solid rgba(255,255,255,0.25);
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 400;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+    .enroll-note { margin-top: 2rem; font-size: 12px; color: rgba(255,255,255,0.35); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); padding: 2.5rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(255,255,255,0.6); }
+    .footer-orgs { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+    .footer-contact { font-size: 12px; color: rgba(255,255,255,0.4); text-align: right; }
+    .footer-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-left > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+    .hero-left > *:nth-child(5) { animation-delay: 0.7s; }
+
+    /* ══════════════════════════════════════════
+       ENROLLMENT MODAL
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(10, 30, 20, 0.65);
+      backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(32px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%; max-width: 680px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
+      border: 0.5px solid #ddddd5;
+      /* Custom scrollbar */
+      scrollbar-width: thin;
+      scrollbar-color: #1D9E75 #f5f5f0;
+    }
+    .modal-box::-webkit-scrollbar { width: 5px; }
+    .modal-box::-webkit-scrollbar-track { background: #f5f5f0; border-radius: 8px; }
+    .modal-box::-webkit-scrollbar-thumb { background: #1D9E75; border-radius: 8px; }
+
+    .modal-close {
+      position: sticky; top: 0; left: 0; right: 0;
+      display: flex; justify-content: flex-end;
+      padding: 12px 16px 0;
+      background: linear-gradient(to bottom, #fff 80%, transparent);
+      z-index: 10;
+    }
+    .modal-close button {
+      background: #f5f5f0; border: 0.5px solid #ddddd5;
+      border-radius: 50%; width: 32px; height: 32px;
+      font-size: 18px; line-height: 1; cursor: pointer;
+      color: #888780; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .modal-close button:hover { background: #ffe5e0; color: #c0392b; border-color: #c0392b; }
+
+    .modal-form-wrap {
+      padding: 0 2rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── FORM STYLES (scoped inside modal) ── */
+    .gig-header {
+      border-left: 3px solid #1D9E75; padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem; background: #f9f9f6; border-radius: 0 8px 8px 0;
+    }
+    .gig-header .org { font-size: 11px; color: #888780; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .gig-header h2 { font-family: 'Lora', serif; font-size: 22px; font-weight: 500; margin: 0 0 2px; color: #1a1a18; }
+    .gig-header .sub { font-size: 13px; color: #888780; }
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+    .badge-green { background: #E1F5EE; color: #0F6E56; }
+    .badge-teal { background: #E1F5EE; color: #085041; }
+    .badge-gray { background: #f5f5f0; color: #888780; border: 0.5px solid #ddddd5; }
+    .info-box {
+      background: #E1F5EE; border: 0.5px solid #5DCAA5;
+      border-radius: 8px; padding: 10px 14px; font-size: 13px;
+      color: #0F6E56; margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .info-box strong { font-weight: 500; }
+    .f-section { margin-bottom: 1.5rem; }
+    .f-section-title {
+      font-size: 11px; font-weight: 500; color: #0F6E56;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      margin-bottom: 10px; padding-bottom: 6px; border-bottom: 0.5px solid #ddddd5;
+    }
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-size: 13px; color: #5f5e5a; margin-bottom: 4px; font-weight: 500; }
+    .field label span.req { color: #D85A30; margin-left: 2px; }
+    .field input:not([type=radio]):not([type=checkbox]),
+    .field select,
+    .field textarea {
+      width: 100%; font-family: 'DM Sans', sans-serif; font-size: 14px;
+      padding: 8px 12px; border: 0.5px solid #b4b2a9; border-radius: 8px;
+      background: #fff; color: #1a1a18; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s; appearance: none;
+    }
+    .field input:not([type=radio]):not([type=checkbox]):focus,
+    .field select:focus, .field textarea:focus {
+      border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+    }
+    .field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .radio-group { display: flex; flex-direction: column; gap: 7px; margin-top: 6px; }
+    .radio-opt { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #1a1a18; }
+    .radio-opt input[type=radio] { accent-color: #1D9E75; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+    .radio-opt label { cursor: pointer; font-size: 14px; color: #1a1a18; font-weight: 400; }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+    .check-opt {
+      display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #1a1a18;
+      padding: 6px 8px; border: 0.5px solid #ddddd5; border-radius: 8px;
+      transition: background 0.12s; cursor: pointer;
+    }
+    .check-opt:hover { background: #f9f9f6; }
+    .check-opt input[type=checkbox] { accent-color: #1D9E75; margin-top: 2px; width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; }
+    .check-opt label { cursor: pointer; font-size: 13px; color: #1a1a18; font-weight: 400; line-height: 1.4; }
+    .agree-section { display: flex; flex-direction: column; gap: 10px; }
+    .agree-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #5f5e5a; line-height: 1.6; cursor: pointer; }
+    .agree-row input { accent-color: #1D9E75; width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+    .contact-note { font-size: 12px; color: #888780; margin-top: 1rem; }
+    .contact-note strong { font-weight: 500; color: #5f5e5a; }
+    .submit-btn {
+      width: 100%; padding: 12px; background: #1D9E75; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+      border: none; border-radius: 8px; cursor: pointer;
+      margin-top: 1.5rem; transition: background 0.15s; letter-spacing: 0.02em;
+    }
+    .submit-btn:hover { background: #0F6E56; }
+    .submit-btn:active { transform: scale(0.99); }
+    .success-msg { display: none; text-align: center; padding: 2.5rem 1rem; }
+    .check-circle {
+      width: 56px; height: 56px; border-radius: 50%; background: #E1F5EE;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-size: 26px; color: #0F6E56;
+    }
+    .success-msg h2 { font-family: 'Lora', serif; font-size: 20px; font-weight: 500; margin: 0 0 8px; color: #1a1a18; }
+    .success-msg p { font-size: 14px; color: #5f5e5a; line-height: 1.7; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 1.5rem 2rem; }
+      .hero-right { min-height: 340px; }
+      section { padding: 4rem 1.5rem; }
+      .about-inner, .schedule-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .curriculum-grid { grid-template-columns: 1fr; }
+      .week-card:nth-child(2n) { border-right: 0.5px solid rgba(255,255,255,0.07); }
+      .enroll { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .footer-contact { text-align: left; }
+    }
+    @media (max-width: 520px) {
+      .modal-form-wrap { padding: 0 1.25rem 2rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .check-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Grow in Grace</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#instructors">Instructors</a></li>
+    <li><a class="nav-cta" href="#enroll" onclick="openModal(event)">Enroll now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero" style="padding: 0;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Short Course &middot; Batch 1 &middot; NORLAG</div>
+    <h1>Grow in<br><em>Grace</em></h1>
+    <p class="hero-desc">A six-week intensive short course equipping NORLAG youth leaders with a deep understanding of Grace Doctrines — to articulate, defend, and live them out.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openModal()">Enroll for free</button>
+      <a class="btn-secondary" href="#curriculum">View curriculum →</a>
+    </div>
+    <div class="hero-pills">
+      <span class="pill pill-green">Free of charge</span>
+      <span class="pill">6 weeks</span>
+      <span class="pill">Virtual &amp; face-to-face</span>
+      <span class="pill">Certificate upon completion</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-center-ornament">G</div>
+    <div class="hero-card">
+      <div class="hero-card-label">Course at a glance</div>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-desc">Weeks of<br>intensive study</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10</div>
+          <div class="hero-stat-desc">Sessions<br>(lectures + reflections)</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-desc">Expert<br>instructors</div>
+        </div>
+      </div>
+      <div class="hero-verse">
+        "But grow in grace, and in the knowledge of our Lord and Saviour Jesus Christ."
+        <cite>— 2 Peter 3:18</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">About the course</div>
+      <h2 class="section-title">Rooted in doctrine.<br><em>Equipped for leadership.</em></h2>
+      <p class="section-body">
+        This short course is designed to equip youth leaders with a profound understanding of Grace Doctrines as taught by Things to Come Mission, Inc. Participants delve into key doctrinal statements, learn to articulate and defend their beliefs, and apply their knowledge in Christian lifestyle and leadership roles.
+      </p>
+      <p class="section-body" style="margin-top: 1rem;">
+        Organized by the International Grace Bible Institute in collaboration with the Northern Luzon Association of Grace Churches, this program fosters a stronger, more unified Grace youth community through virtual lectures, reflective fellowships, and practical assignments.
+      </p>
+    </div>
+    <div class="about-right">
+      <div class="about-card">
+        <h3>Outcomes-based learning</h3>
+        <p>Students become owners and constructors of their learning by creating artifacts that address real challenges in their communities and churches.</p>
+      </div>
+      <div class="about-card">
+        <h3>Inquiry &amp; collaborative learning</h3>
+        <p>Cooperative tasks inside and outside the virtual classroom instill scholastic independence and community-centered faith.</p>
+      </div>
+      <div class="about-card">
+        <h3>Blended learning</h3>
+        <p>Virtual lectures every Monday and reflection fellowships every Friday, culminating in a face-to-face graduation event with pastors and Bible women.</p>
+      </div>
+      <div class="about-card">
+        <h3>Assessment: pass or fail</h3>
+        <p>Six weekly reflections and a final electronic portfolio (PechaKucha) demonstrate mastery of Grace Doctrines. No grades — just growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes" id="outcomes">
+  <div class="section-label">What you will gain</div>
+  <h2 class="section-title">Course learning <em>outcomes</em></h2>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <div class="outcome-num">01</div>
+      <h3>Mastery of Grace Doctrines</h3>
+      <p>Exhibit a comprehensive understanding of TCM, Inc. doctrinal statements and articulate them with confidence and clarity.</p>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">02</div>
+      <h3>Unity in the Grace community</h3>
+      <p>Recognize and value your role in building a stronger, more unified Grace youth community within NORLAG.</p>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">03</div>
+      <h3>Applied Christian leadership</h3>
+      <p>Effectively apply your understanding of Grace Doctrines in your Christian lifestyle, leadership, and outreach ministry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <div class="curriculum-inner">
+    <div class="section-label">What we cover</div>
+    <h2 class="section-title">Course <em>curriculum</em></h2>
+    <p class="section-body">Six weeks of focused study, moving from foundational doctrine to practical ministry leadership.</p>
+    <div class="curriculum-grid">
+      <div class="week-card">
+        <span class="week-badge">Week 1</span>
+        <h3>Orientation</h3>
+        <p>Acquaint yourself with course rules, navigate the virtual learning environment, and associate individual success with team success.</p>
+      </div>
+      <div class="week-card">
+        <span class="week-badge">Week 2</span>
+        <h3>The Bible</h3>
+        <p>State and explain the TCM, Inc. doctrinal statement on the Bible. Explore rightly dividing the Word and the finality of Scripture in modern times.</p>
+        <div class="ref">Baker, C.F. (1956) — The Bible, pp. 10–13</div>
+      </div>
+      <div class="week-card">
+        <span class="week-badge">Week 3</span>
+        <h3>The Godhead</h3>
+        <p>Define and understand the persona of the Godhead, explore different religious perspectives, and value the magnitude of God's deity.</p>
+        <div class="ref">Baker, C.F. (1956) — The Godhead, pp. 14–15</div>
+      </div>
+      <div class="week-card">
+        <span class="week-badge">Week 4</span>
+        <h3>The Godhead of Christ</h3>
+        <p>Understand Jesus' deity and humanity, highlight His critical role in salvation, and explain His unchanging deity and evolving relationship with Israel and the Body.</p>
+        <div class="ref">Baker, C.F. (1956) — The Godhead of Christ, pp. 16–17</div>
+      </div>
+      <div class="week-card">
+        <span class="week-badge">Week 5</span>
+        <h3>Total Depravity</h3>
+        <p>Define depravity, explain human nature in contrast to God's essence, identify characteristics of depravity, and value God's grace as the remedy.</p>
+        <div class="ref">Baker, C.F. (1956) — Total Depravity, pp. 18–22</div>
+      </div>
+      <div class="week-card week-culmination">
+        <span class="week-badge">Week 6</span>
+        <h3>Ministry &amp; Culmination</h3>
+        <p>Identify three paramount youth ministry priorities, elaborate a ministry mission, and demonstrate leadership with the FPEE Framework. Conclude with face-to-face certification and recognition.</p>
+        <div class="ref">Strommen, Jones &amp; Rahn (2001) — Youth Ministry that Transforms, pp. 199–214</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+  <div class="schedule-inner">
+    <div>
+      <div class="section-label">Important dates</div>
+      <h2 class="section-title">Scheme of <em>work</em></h2>
+      <p class="section-body">Sessions run every Monday (lecture) and Friday (reflection) from 6:00 to 7:00 PM.</p>
+      <table class="schedule-table">
+        <thead><tr><th>Date</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>May 16</td><td>Orientation</td></tr>
+          <tr><td>May 23</td><td>First Lecture <span class="tag-lecture">Lecture</span></td></tr>
+          <tr><td>May 30</td><td>Second Lecture <span class="tag-lecture">Lecture</span></td></tr>
+          <tr><td>Jun 06</td><td>Third Lecture <span class="tag-lecture">Lecture</span></td></tr>
+          <tr><td>Jun 13</td><td>Fourth Lecture <span class="tag-lecture">Lecture</span></td></tr>
+          <tr><td>Jun 20</td><td>Culminating Activity <span class="tag-face">Face-to-face</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="schedule-right">
+      <div class="section-label">Course policy</div>
+      <h2 class="section-title">What to <em>expect</em></h2>
+      <ul class="policy-list">
+        <li class="policy-item"><span class="policy-dot"></span><span>This course is <strong>free</strong> for all NORLAG youth officers — no contributions collected.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>Participants are allowed <strong>one absence</strong> only. Exceeding this results in automatic withdrawal.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>Withdrawn participants may <strong>re-enroll</strong> in the next available batch.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>Active engagement in discussions, assignments, and group activities is required.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>All course materials — readings and resources — will be distributed <strong>electronically</strong>.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>Mentoring sessions and one-on-one consultations are available for participants needing extra support.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>A <strong>face-to-face graduation</strong> fellowship will recognize and certify all completers with their Pastors or Bible Women present.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="instructors" id="instructors">
+  <div class="section-label">Your teachers</div>
+  <h2 class="section-title">Meet the <em>instructors</em></h2>
+  <p class="section-body">Seasoned Grace pastors and Bible women from across the Northern Luzon Association.</p>
+  <div class="instructors-grid">
+    <div class="instructor-card">
+      <div class="instructor-avatar">CJ</div>
+      <h3>BW Cherelyn Juan</h3>
+      <div class="role">Bible Woman</div>
+      <div class="church">GGCC Palattao</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">RB</div>
+      <h3>Pastor Romar Basihan</h3>
+      <div class="role">Pastor</div>
+      <div class="church">GGCC Pulong Tagalog</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">KM</div>
+      <h3>Pastor Ruben Kyle Magalag</h3>
+      <div class="role">Pastor</div>
+      <div class="church">GGCC Research</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">JB</div>
+      <h3>BW Jaasiel Balino</h3>
+      <div class="role">Bible Woman</div>
+      <div class="church">GGCC San Fermin</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">AR</div>
+      <h3>Bro Alvin Ramos</h3>
+      <div class="role">Youth Adviser</div>
+      <div class="church">GGCC San Fermin</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">JJ</div>
+      <h3>Pastor Jan Mark Juan</h3>
+      <div class="role">Pastor</div>
+      <div class="church">GGCC Pulong Tagalog</div>
+    </div>
+  </div>
+</section>
+
+<!-- ENROLL CTA -->
+<section class="enroll" id="enroll">
+  <div class="enroll-inner">
+    <div class="section-label">Join Batch 1</div>
+    <h2 class="section-title">Ready to <em>grow in grace?</em></h2>
+    <p class="enroll-desc">Enrollment is open to all NORLAG youth officers. The course is completely free. Secure your place in Batch 1 today.</p>
+    <div class="enroll-actions">
+      <button class="btn-light" onclick="openModal()">Enroll now — it's free</button>
+      <a class="btn-ghost" href="mailto:?subject=Grow%20in%20Grace%20Short%20Course">Share this course</a>
+    </div>
+    <p class="enroll-note">For inquiries, contact the course coordinator at 0961-793-0629</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Grow in Grace — Short Course</div>
+    <div class="footer-orgs">Things to Come Mission, Inc. &middot; International Grace Bible Institute &middot; NORLAG</div>
+  </div>
+  <div class="footer-contact">
+    Course coordinator: <a href="tel:09617930629">0961-793-0629</a><br>
+    Starts May 16, 2026
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     ENROLLMENT MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="enrollModal" role="dialog" aria-modal="true" aria-label="Enrollment Form">
+  <div class="modal-box" id="modalBox">
+
+    <div class="modal-close">
+      <button onclick="closeModal()" aria-label="Close enrollment form">&times;</button>
+    </div>
+
+    <div class="modal-form-wrap">
+
+      <form id="form-area" action="https://formspree.io/f/mkoygyba" method="POST">
+
+        <div class="gig-header">
+          <p class="org">Things to Come Mission, Inc. &middot; IGBI &middot; NORLAG</p>
+          <h2>Grow in Grace</h2>
+          <p class="sub">Short Course Enrollment Form &mdash; Batch 1</p>
+        </div>
+
+        <div class="badge-row">
+          <span class="badge badge-green">Free for NORLAG youth officers</span>
+          <span class="badge badge-teal">6-week virtual program</span>
+          <span class="badge badge-gray">Pass / Fail</span>
+        </div>
+
+        <div class="info-box">
+          <strong>Before you enroll:</strong> This course runs every Monday (lecture) and Friday (reflection), 6:00–7:00 PM. Participants are allowed <strong>one absence</strong> only. Exceeding this results in automatic withdrawal. Completion is recognized with a certificate at a face-to-face graduation fellowship.
+        </div>
+
+        <!-- Personal Information -->
+        <div class="f-section">
+          <div class="f-section-title">Personal information</div>
+          <div class="grid-2">
+            <div class="field">
+              <label>First name <span class="req">*</span></label>
+              <input type="text" id="fname" name="first_name" placeholder="e.g. Maria" />
+            </div>
+            <div class="field">
+              <label>Last name <span class="req">*</span></label>
+              <input type="text" id="lname" name="last_name" placeholder="e.g. Santos" />
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Age <span class="req">*</span></label>
+              <input type="number" id="age" name="age" placeholder="e.g. 23" min="13" max="40" />
+            </div>
+            <div class="field">
+              <label>Sex <span class="req">*</span></label>
+              <select id="sex" name="sex">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="youremail@example.com" />
+          </div>
+          <div class="field">
+            <label>Mobile number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="mobile_number" placeholder="e.g. 09XX-XXX-XXXX" />
+          </div>
+          <div class="field">
+            <label>Facebook profile link</label>
+            <input type="url" id="fb" name="facebook_profile" placeholder="https://facebook.com/yourprofile" />
+          </div>
+        </div>
+
+        <!-- Church & Leadership -->
+        <div class="f-section">
+          <div class="f-section-title">Church &amp; leadership</div>
+          <div class="field">
+            <label>Local Grace church <span class="req">*</span></label>
+            <input type="text" id="church" name="local_church" placeholder="e.g. GGCC Palattao" />
+          </div>
+          <div class="field">
+            <label>Name of your Pastor or Bible Woman <span class="req">*</span></label>
+            <input type="text" id="pastor" name="pastor_or_bible_woman" placeholder="Full name" />
+          </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="f-section">
+          <div class="f-section-title">Availability</div>
+          <div class="field">
+            <label>Can you attend both Monday lectures and Friday reflections (6–7 PM) for 6 weeks? <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt"><input type="radio" name="avail" id="avail-yes" value="yes" /><label for="avail-yes">Yes, I can commit to both sessions</label></div>
+              <div class="radio-opt"><input type="radio" name="avail" id="avail-mostly" value="mostly" /><label for="avail-mostly">I may miss one session (within the allowed absence)</label></div>
+              <div class="radio-opt"><input type="radio" name="avail" id="avail-unsure" value="unsure" /><label for="avail-unsure">I am not yet sure</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Do you have reliable internet access for virtual sessions? <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt"><input type="radio" name="internet" id="inet-yes" value="yes" /><label for="inet-yes">Yes</label></div>
+              <div class="radio-opt"><input type="radio" name="internet" id="inet-sometimes" value="sometimes" /><label for="inet-sometimes">Sometimes unstable, but manageable</label></div>
+              <div class="radio-opt"><input type="radio" name="internet" id="inet-no" value="no" /><label for="inet-no">No, I will need alternative arrangements</label></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qualifying Questions -->
+        <div class="f-section">
+          <div class="f-section-title">Qualifying questions</div>
+          <div class="field">
+            <label>Which topics are you most eager to study in this course? (Select all that apply)</label>
+            <div class="check-grid">
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-bible" value="bible" /><label for="topic-bible">The Bible &amp; rightly dividing</label></div>
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-godhead" value="godhead" /><label for="topic-godhead">The Godhead</label></div>
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-christ" value="christ" /><label for="topic-christ">The Godhead of Christ</label></div>
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-depravity" value="depravity" /><label for="topic-depravity">Total Depravity</label></div>
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-ministry" value="ministry" /><label for="topic-ministry">Youth Ministry Priorities</label></div>
+              <div class="check-opt"><input type="checkbox" name="topic" id="topic-all" value="all" /><label for="topic-all">All of the above</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>In your own words, briefly describe why you want to join this course <span class="req">*</span></label>
+            <textarea id="motivation" name="motivation" placeholder="Share your reason for enrolling and what you hope to bring back to your local church..."></textarea>
+          </div>
+          <div class="field">
+            <label>How familiar are you with the TCM, Inc. doctrinal statements? <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt"><input type="radio" name="familiarity" id="fam-new" value="new" /><label for="fam-new">I am new to them</label></div>
+              <div class="radio-opt"><input type="radio" name="familiarity" id="fam-some" value="some" /><label for="fam-some">I have some knowledge</label></div>
+              <div class="radio-opt"><input type="radio" name="familiarity" id="fam-good" value="good" /><label for="fam-good">I am fairly familiar with them</label></div>
+              <div class="radio-opt"><input type="radio" name="familiarity" id="fam-deep" value="deep" /><label for="fam-deep">I can already explain most of them</label></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agreement -->
+        <div class="f-section">
+          <div class="f-section-title">Agreement &amp; confirmation</div>
+          <div class="agree-section">
+            <label class="agree-row">
+              <input type="checkbox" id="agree1" />
+              I confirm I am a registered youth officer of a NORLAG Grace church and understand this course is free of charge.
+            </label>
+            <label class="agree-row">
+              <input type="checkbox" id="agree2" />
+              I understand that exceeding one absence will result in automatic withdrawal, and I may re-enroll in the next batch.
+            </label>
+            <label class="agree-row">
+              <input type="checkbox" id="agree3" />
+              I commit to actively participating in discussions, completing all assignments, and contributing to group activities.
+            </label>
+            <label class="agree-row">
+              <input type="checkbox" id="agree4" />
+              I agree to provide feedback at the end of the course to help improve future iterations of the program.
+            </label>
+          </div>
+        </div>
+
+        <p class="contact-note">For inquiries, contact the course coordinator at <strong>0961-793-0629</strong>.</p>
+
+        <button type="submit" class="submit-btn" onclick="handleSubmit(event)">Submit enrollment &rarr;</button>
+      </form>
+
+      <div class="success-msg" id="success">
+        <div class="check-circle">&#10003;</div>
+        <h2>Enrollment submitted!</h2>
+        <p>Thank you for enrolling in <em>Grow in Grace</em>.<br>You will receive a confirmation once your enrollment status is reviewed.<br><br>For questions, call <strong>0961-793-0629</strong>.</p>
+      </div>
+
+    </div><!-- /.modal-form-wrap -->
+  </div><!-- /.modal-box -->
+</div><!-- /.modal-overlay -->
+
+<script>
+  /* ── Modal open / close ── */
+  function openModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('enrollModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Reset the modal to top when reopened
+    document.getElementById('modalBox').scrollTop = 0;
+  }
+
+  function closeModal() {
+    document.getElementById('enrollModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click (outside the box)
+  document.getElementById('enrollModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ── Form submission ── */
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const required = {
+      fname: 'First name', lname: 'Last name', age: 'Age', sex: 'Sex',
+      email: 'Email address', phone: 'Mobile number',
+      church: 'Local Grace church', pastor: 'Pastor / Bible Woman name',
+      motivation: 'Motivation'
+    };
+    for (const [id, label] of Object.entries(required)) {
+      if (!document.getElementById(id).value.trim()) {
+        alert('Please fill in: ' + label); return;
+      }
+    }
+    if (!document.querySelector('input[name=avail]:checked')) {
+      alert('Please answer: attendance availability'); return;
+    }
+    if (!document.querySelector('input[name=internet]:checked')) {
+      alert('Please answer: internet access'); return;
+    }
+    if (!document.querySelector('input[name=familiarity]:checked')) {
+      alert('Please answer: familiarity with TCM doctrines'); return;
+    }
+    for (const id of ['agree1','agree2','agree3','agree4']) {
+      if (!document.getElementById(id).checked) {
+        alert('Please agree to all terms before submitting.'); return;
+      }
+    }
+
+    const form = document.getElementById('form-area');
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+        document.getElementById('modalBox').scrollTop = 0;
+      } else {
+        alert('There was a problem submitting your form. Please try again.');
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection and try again.');
+    }
+  }
+</script>
+</body>
+</html>
