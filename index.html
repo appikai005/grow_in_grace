@@ -1,496 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grow in Grace – Short Course</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --green-deep: #0a4a35;
-      --green-mid:  #1D9E75;
-      --green-soft: #E1F5EE;
-      --green-pale: #f2fbf7;
-      --gold:       #c9a84c;
-      --gold-soft:  #fdf6e3;
-      --ink:        #111a14;
-      --ink-mid:    #3a4a3e;
-      --ink-light:  #6b7a6e;
-      --cream:      #faf9f6;
-      --white:      #ffffff;
-      --border:     rgba(10,74,53,0.12);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grow in Grace — NORLAG Youth Ministries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ───────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      overflow-x: hidden;
-    }
+:root{
+  --gd:    #0a4a35;
+  --gm:    #1D9E75;
+  --gs:    #E1F5EE;
+  --gp:    #f2fbf7;
+  --gold:  #c9a84c;
+  --golds: #fdf6e3;
+  --ink:   #111a14;
+  --inkm:  #3a4a3e;
+  --inkl:  #6b7a6e;
+  --cream: #faf9f6;
+  --white: #ffffff;
+  --bdr:   rgba(10,74,53,0.12);
+  /* teacher section */
+  --navy:  #0F1B2D;
+  --navy2: #162336;
+  --ngold: #C9963A;
+  --ngold2:#E8B45A;
+  --vio:   #534AB7;
+  --vio2:  #3C3489;
+  --viol:  #EEEDFE;
+  --rad:   10px;
+}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2.5rem; height: 60px;
-      background: rgba(250,249,246,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px; font-weight: 600; color: var(--green-deep);
-      letter-spacing: 0.02em; text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 13px; font-weight: 400; color: var(--ink-mid);
-      text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--green-mid); }
-    .nav-cta {
-      background: var(--green-deep); color: var(--white) !important;
-      padding: 7px 18px; border-radius: 40px;
-      font-size: 13px !important; font-weight: 500 !important;
-      transition: background 0.2s !important; cursor: pointer;
-    }
-    .nav-cta:hover { background: var(--green-mid) !important; }
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 60px; position: relative; overflow: hidden;
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 3rem 5rem 5rem; position: relative; z-index: 2;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--green-mid); margin-bottom: 1.5rem;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 24px; height: 1px; background: var(--green-mid);
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 6vw, 80px); font-weight: 500;
-      line-height: 1.05; color: var(--green-deep); margin-bottom: 1.5rem;
-    }
-    .hero h1 em { font-style: italic; color: var(--green-mid); }
-    .hero-desc {
-      font-size: 16px; font-weight: 300; line-height: 1.8;
-      color: var(--ink-mid); max-width: 420px; margin-bottom: 2.5rem;
-    }
-    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--green-deep); color: var(--white);
-      padding: 14px 32px; border-radius: 40px;
-      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
-      text-decoration: none; letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.15s; display: inline-block;
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
-    .btn-secondary {
-      color: var(--green-deep); font-size: 14px; font-weight: 400;
-      text-decoration: none; letter-spacing: 0.04em;
-      display: inline-flex; align-items: center; gap: 6px;
-      border-bottom: 1px solid var(--border); padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .btn-secondary:hover { color: var(--green-mid); border-color: var(--green-mid); }
-    .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2.5rem; }
-    .pill {
-      font-size: 12px; font-weight: 400; padding: 5px 14px;
-      border-radius: 40px; border: 0.5px solid var(--border);
-      color: var(--ink-mid); background: var(--white);
-    }
-    .pill-green { background: var(--green-soft); border-color: rgba(29,158,117,0.3); color: var(--green-deep); }
-    .hero-right { position: relative; overflow: hidden; background: var(--green-deep); }
-    .hero-pattern {
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(circle at 30% 40%, rgba(29,158,117,0.35) 0%, transparent 55%),
-        radial-gradient(circle at 75% 70%, rgba(201,168,76,0.2) 0%, transparent 45%);
-    }
-    .hero-lines {
-      position: absolute; inset: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
-    }
-    .hero-card {
-      position: absolute; bottom: 2.5rem; left: 2.5rem; right: 2.5rem;
-      background: rgba(255,255,255,0.07); backdrop-filter: blur(8px);
-      border: 0.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 1.5rem;
-    }
-    .hero-card-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
-    .hero-stat-row { display: flex; gap: 1.5rem; }
-    .hero-stat { flex: 1; }
-    .hero-stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px; font-weight: 500; color: var(--white); line-height: 1; margin-bottom: 4px;
-    }
-    .hero-stat-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
-    .hero-verse {
-      margin-top: 1.25rem; padding-top: 1.25rem;
-      border-top: 0.5px solid rgba(255,255,255,0.1);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px; font-style: italic; color: rgba(255,255,255,0.7); line-height: 1.6;
-    }
-    .hero-verse cite { font-style: normal; font-size: 12px; color: var(--gold); display: block; margin-top: 6px; }
-    .hero-center-ornament {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 220px; font-weight: 600;
-      color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; white-space: nowrap;
-    }
+/* ── NAV ─────────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:62px;
+  background:rgba(250,249,246,0.94);
+  backdrop-filter:blur(14px);
+  border-bottom:0.5px solid var(--bdr);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--gd);
+  letter-spacing:.02em;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-mark{
+  width:30px;height:30px;background:var(--gd);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:600;color:var(--white);
+}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-links a{
+  font-size:13px;font-weight:400;color:var(--inkm);
+  text-decoration:none;letter-spacing:.03em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--gm);}
+.nav-cta{
+  background:var(--gd)!important;color:var(--white)!important;
+  padding:7px 18px;border-radius:40px;
+  font-weight:500!important;cursor:pointer;
+  transition:background .2s!important;
+}
+.nav-cta:hover{background:var(--gm)!important;}
+.nav-teacher{
+  color:var(--gd)!important;font-weight:500!important;
+  border:1px solid var(--bdr);padding:6px 16px;border-radius:40px;
+  transition:all .2s!important;
+}
+.nav-teacher:hover{background:var(--gp)!important;border-color:var(--gm)!important;}
 
-    /* ── SECTION SHARED ── */
-    section { padding: 6rem 5rem; }
-    .section-label {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--green-mid);
-      display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;
-    }
-    .section-label::before { content: ''; width: 20px; height: 1px; background: var(--green-mid); }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 4vw, 48px); font-weight: 500;
-      line-height: 1.15; color: var(--green-deep); margin-bottom: 1rem;
-    }
-    .section-title em { font-style: italic; color: var(--green-mid); }
-    .section-body { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--ink-mid); max-width: 560px; }
+/* ── HERO ────────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:62px;position:relative;overflow:hidden;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 3rem 5rem 5rem;position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gm);margin-bottom:1.5rem;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gm);}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,6vw,80px);font-weight:500;
+  line-height:1.05;color:var(--gd);margin-bottom:1.5rem;
+}
+.hero h1 em{font-style:italic;color:var(--gm);}
+.hero-desc{
+  font-size:16px;font-weight:300;line-height:1.8;
+  color:var(--inkm);max-width:420px;margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--gd);color:var(--white);
+  padding:14px 32px;border-radius:40px;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;
+  text-decoration:none;letter-spacing:.04em;
+  transition:background .2s,transform .15s;display:inline-block;
+  border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--gm);transform:translateY(-1px);}
+.btn-secondary{
+  color:var(--gd);font-size:14px;font-weight:400;
+  text-decoration:none;letter-spacing:.04em;
+  display:inline-flex;align-items:center;gap:6px;
+  border-bottom:1px solid var(--bdr);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.btn-secondary:hover{color:var(--gm);border-color:var(--gm);}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:2.5rem;}
+.pill{
+  font-size:12px;font-weight:400;padding:5px 14px;
+  border-radius:40px;border:0.5px solid var(--bdr);
+  color:var(--inkm);background:var(--white);
+}
+.pill-green{background:var(--gs);border-color:rgba(29,158,117,.3);color:var(--gd);}
+.hero-right{position:relative;overflow:hidden;background:var(--gd);}
+.hero-pattern{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 30% 40%,rgba(29,158,117,.35) 0%,transparent 55%),
+    radial-gradient(circle at 75% 70%,rgba(201,168,76,.2) 0%,transparent 45%);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.04) 39px,rgba(255,255,255,.04) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.04) 39px,rgba(255,255,255,.04) 40px);
+}
+.hero-card{
+  position:absolute;bottom:2.5rem;left:2.5rem;right:2.5rem;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(8px);
+  border:0.5px solid rgba(255,255,255,.15);border-radius:16px;padding:1.5rem;
+}
+.hero-card-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem;}
+.hero-stat-row{display:flex;gap:1.5rem;}
+.hero-stat{flex:1;}
+.hero-stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:500;color:var(--white);line-height:1;margin-bottom:4px;
+}
+.hero-stat-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.4;}
+.hero-verse{
+  margin-top:1.25rem;padding-top:1.25rem;
+  border-top:0.5px solid rgba(255,255,255,.1);
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-style:italic;color:rgba(255,255,255,.7);line-height:1.6;
+}
+.hero-verse cite{font-style:normal;font-size:12px;color:var(--gold);display:block;margin-top:6px;}
+.hero-center-ornament{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:220px;font-weight:600;
+  color:rgba(255,255,255,.04);line-height:1;pointer-events:none;white-space:nowrap;
+}
 
-    /* ── ABOUT ── */
-    .about { background: var(--white); }
-    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-right { display: flex; flex-direction: column; gap: 1.25rem; }
-    .about-card {
-      background: var(--green-pale); border: 0.5px solid rgba(29,158,117,0.2);
-      border-radius: 12px; padding: 1.25rem 1.5rem; border-left: 3px solid var(--green-mid);
-    }
-    .about-card h3 { font-size: 13px; font-weight: 500; color: var(--green-deep); letter-spacing: 0.04em; margin-bottom: 6px; }
-    .about-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+/* ── SHARED SECTION ──────────────────────────────────────────────── */
+section{padding:6rem 5rem;}
+.section-label{
+  font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gm);
+  display:flex;align-items:center;gap:8px;margin-bottom:1rem;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--gm);}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,48px);font-weight:500;
+  line-height:1.15;color:var(--gd);margin-bottom:1rem;
+}
+.section-title em{font-style:italic;color:var(--gm);}
+.section-body{font-size:15px;font-weight:300;line-height:1.9;color:var(--inkm);max-width:560px;}
 
-    /* ── OUTCOMES ── */
-    .outcomes { background: var(--cream); }
-    .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-    .outcome-card {
-      background: var(--white); border: 0.5px solid var(--border);
-      border-radius: 16px; padding: 2rem; transition: border-color 0.2s, transform 0.2s;
-    }
-    .outcome-card:hover { border-color: var(--green-mid); transform: translateY(-3px); }
-    .outcome-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 500; color: var(--green-soft); line-height: 1; margin-bottom: 1rem; }
-    .outcome-card h3 { font-size: 15px; font-weight: 500; color: var(--green-deep); margin-bottom: 8px; line-height: 1.3; }
-    .outcome-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+/* ── ABOUT ───────────────────────────────────────────────────────── */
+.about{background:var(--white);}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-right{display:flex;flex-direction:column;gap:1.25rem;}
+.about-card{
+  background:var(--gp);border:0.5px solid rgba(29,158,117,.2);
+  border-radius:12px;padding:1.25rem 1.5rem;border-left:3px solid var(--gm);
+}
+.about-card h3{font-size:13px;font-weight:500;color:var(--gd);letter-spacing:.04em;margin-bottom:6px;}
+.about-card p{font-size:13px;font-weight:300;color:var(--inkm);line-height:1.7;}
 
-    /* ── CURRICULUM ── */
-    .curriculum { background: var(--green-deep); position: relative; overflow: hidden; }
-    .curriculum::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle at 85% 20%, rgba(201,168,76,0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 10% 80%, rgba(29,158,117,0.2) 0%, transparent 40%);
-    }
-    .curriculum .section-label { color: var(--gold); }
-    .curriculum .section-label::before { background: var(--gold); }
-    .curriculum .section-title { color: var(--white); }
-    .curriculum .section-body { color: rgba(255,255,255,0.6); }
-    .curriculum-inner { position: relative; z-index: 1; }
-    .curriculum-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      margin-top: 3.5rem; border: 0.5px solid rgba(255,255,255,0.1);
-      border-radius: 16px; overflow: hidden;
-    }
-    .week-card {
-      background: rgba(255,255,255,0.04); padding: 2rem; position: relative;
-      border-right: 0.5px solid rgba(255,255,255,0.07);
-      border-bottom: 0.5px solid rgba(255,255,255,0.07);
-      transition: background 0.2s;
-    }
-    .week-card:hover { background: rgba(255,255,255,0.07); }
-    .week-card:nth-child(2n) { border-right: none; }
-    .week-badge {
-      display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gold); border: 0.5px solid rgba(201,168,76,0.4);
-      padding: 3px 10px; border-radius: 40px; margin-bottom: 1rem;
-    }
-    .week-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
-    .week-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
-    .week-card .ref { margin-top: 1rem; font-size: 11px; color: rgba(255,255,255,0.25); font-style: italic; }
-    .week-culmination { grid-column: 1 / -1; background: rgba(201,168,76,0.08); border-top: 0.5px solid rgba(201,168,76,0.2) !important; }
-    .week-culmination .week-badge { color: var(--gold); }
-    .week-culmination h3 { color: var(--gold); }
+/* ── OUTCOMES ────────────────────────────────────────────────────── */
+.outcomes{background:var(--cream);}
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.outcome-card{
+  background:var(--white);border:0.5px solid var(--bdr);
+  border-radius:16px;padding:2rem;transition:border-color .2s,transform .2s;
+}
+.outcome-card:hover{border-color:var(--gm);transform:translateY(-3px);}
+.outcome-num{
+  font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:500;
+  color:var(--gs);line-height:1;margin-bottom:1rem;
+}
+.outcome-card h3{font-size:15px;font-weight:500;color:var(--gd);margin-bottom:8px;line-height:1.3;}
+.outcome-card p{font-size:13px;font-weight:300;color:var(--inkm);line-height:1.7;}
 
-    /* ── SCHEDULE ── */
-    .schedule { background: var(--white); }
-    .schedule-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .schedule-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-    .schedule-table th {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-light); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border);
-    }
-    .schedule-table td { padding: 12px; font-size: 14px; font-weight: 300; color: var(--ink-mid); border-bottom: 0.5px solid var(--border); }
-    .schedule-table tr:last-child td { border-bottom: none; }
-    .schedule-table td:first-child { font-weight: 500; color: var(--green-deep); width: 100px; }
-    .tag-lecture { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 40px; background: var(--green-soft); color: var(--green-deep); font-weight: 500; letter-spacing: 0.05em; margin-left: 6px; }
-    .tag-face { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 40px; background: var(--gold-soft); color: #7a5c1a; font-weight: 500; letter-spacing: 0.05em; margin-left: 6px; }
-    .policy-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-    .policy-item { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
-    .policy-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); margin-top: 8px; flex-shrink: 0; }
+/* ── CURRICULUM ──────────────────────────────────────────────────── */
+.curriculum{background:var(--gd);position:relative;overflow:hidden;}
+.curriculum::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 85% 20%,rgba(201,168,76,.12) 0%,transparent 50%),
+    radial-gradient(circle at 10% 80%,rgba(29,158,117,.2) 0%,transparent 40%);
+}
+.curriculum .section-label{color:var(--gold);}
+.curriculum .section-label::before{background:var(--gold);}
+.curriculum .section-title{color:var(--white);}
+.curriculum .section-body{color:rgba(255,255,255,.6);}
+.curriculum-inner{position:relative;z-index:1;}
+.curriculum-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  margin-top:3.5rem;border:0.5px solid rgba(255,255,255,.1);
+  border-radius:16px;overflow:hidden;
+}
+.week-card{
+  background:rgba(255,255,255,.04);padding:2rem;position:relative;
+  border-right:0.5px solid rgba(255,255,255,.07);
+  border-bottom:0.5px solid rgba(255,255,255,.07);
+  transition:background .2s;
+}
+.week-card:hover{background:rgba(255,255,255,.07);}
+.week-card:nth-child(2n){border-right:none;}
+.week-badge{
+  display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);border:0.5px solid rgba(201,168,76,.4);
+  padding:3px 10px;border-radius:40px;margin-bottom:1rem;
+}
+.week-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.2;}
+.week-card p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;}
+.week-card .ref{margin-top:1rem;font-size:11px;color:rgba(255,255,255,.25);font-style:italic;}
+.week-culmination{grid-column:1/-1;background:rgba(201,168,76,.08);border-top:0.5px solid rgba(201,168,76,.2)!important;}
+.week-culmination .week-badge{color:var(--gold);}
+.week-culmination h3{color:var(--gold);}
 
-    /* ── INSTRUCTORS ── */
-    .instructors { background: var(--cream); }
-    .instructors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
-    .instructor-card {
-      background: var(--white); border: 0.5px solid var(--border);
-      border-radius: 16px; padding: 1.5rem 1.25rem; text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .instructor-card:hover { border-color: var(--green-mid); transform: translateY(-2px); }
-    .instructor-avatar {
-      width: 56px; height: 56px; border-radius: 50%; background: var(--green-deep);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
-      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--white);
-    }
-    .instructor-card h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
-    .instructor-card .role { font-size: 12px; color: var(--green-mid); font-weight: 400; margin-bottom: 4px; }
-    .instructor-card .church { font-size: 12px; color: var(--ink-light); font-weight: 300; }
+/* ── SCHEDULE ────────────────────────────────────────────────────── */
+.schedule{background:var(--white);}
+.schedule-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.schedule-table{width:100%;border-collapse:collapse;margin-top:2rem;}
+.schedule-table th{
+  font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--inkl);text-align:left;padding:8px 12px;border-bottom:1px solid var(--bdr);
+}
+.schedule-table td{padding:12px;font-size:14px;font-weight:300;color:var(--inkm);border-bottom:0.5px solid var(--bdr);}
+.schedule-table tr:last-child td{border-bottom:none;}
+.schedule-table td:first-child{font-weight:500;color:var(--gd);width:100px;}
+.tag-lecture{display:inline-block;font-size:10px;padding:2px 8px;border-radius:40px;background:var(--gs);color:var(--gd);font-weight:500;letter-spacing:.05em;margin-left:6px;}
+.tag-face{display:inline-block;font-size:10px;padding:2px 8px;border-radius:40px;background:var(--golds);color:#7a5c1a;font-weight:500;letter-spacing:.05em;margin-left:6px;}
+.policy-list{list-style:none;margin-top:2rem;display:flex;flex-direction:column;gap:1rem;}
+.policy-item{display:flex;gap:14px;align-items:flex-start;font-size:14px;font-weight:300;color:var(--inkm);line-height:1.7;}
+.policy-dot{width:6px;height:6px;border-radius:50%;background:var(--gm);margin-top:8px;flex-shrink:0;}
 
-    /* ── ENROLL ── */
-    .enroll { background: var(--green-deep); text-align: center; padding: 7rem 5rem; position: relative; overflow: hidden; }
-    .enroll::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(29,158,117,0.3) 0%, transparent 60%);
-    }
-    .enroll-inner { position: relative; z-index: 1; }
-    .enroll .section-label { justify-content: center; color: var(--gold); }
-    .enroll .section-label::before { background: var(--gold); }
-    .enroll .section-title { color: var(--white); margin: 0 auto 1rem; max-width: 600px; }
-    .enroll-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
-    .enroll-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-light {
-      background: var(--white); color: var(--green-deep);
-      padding: 14px 36px; border-radius: 40px;
-      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500;
-      text-decoration: none; letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.15s; display: inline-block;
-      border: none; cursor: pointer;
-    }
-    .btn-light:hover { background: var(--green-soft); transform: translateY(-1px); }
-    .btn-ghost {
-      color: rgba(255,255,255,0.7); padding: 14px 24px; border-radius: 40px;
-      border: 0.5px solid rgba(255,255,255,0.25);
-      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 400;
-      text-decoration: none; letter-spacing: 0.04em;
-      transition: border-color 0.2s, color 0.2s; display: inline-block;
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
-    .enroll-note { margin-top: 2rem; font-size: 12px; color: rgba(255,255,255,0.35); }
+/* ── INSTRUCTORS ─────────────────────────────────────────────────── */
+.instructors{background:var(--cream);}
+.instructors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;margin-top:3rem;}
+.instructor-card{
+  background:var(--white);border:0.5px solid var(--bdr);
+  border-radius:16px;padding:1.5rem 1.25rem;text-align:center;
+  transition:border-color .2s,transform .2s;
+}
+.instructor-card:hover{border-color:var(--gm);transform:translateY(-2px);}
+.instructor-avatar{
+  width:56px;height:56px;border-radius:50%;background:var(--gd);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--white);
+}
+.instructor-card h3{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.instructor-card .role{font-size:12px;color:var(--gm);font-weight:400;margin-bottom:4px;}
+.instructor-card .church{font-size:12px;color:var(--inkl);font-weight:300;}
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink); padding: 2.5rem 5rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(255,255,255,0.6); }
-    .footer-orgs { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 2px; }
-    .footer-contact { font-size: 12px; color: rgba(255,255,255,0.4); text-align: right; }
-    .footer-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+/* ── TEACHER PORTAL SECTION ──────────────────────────────────────── */
+#teacher-portal{
+  background:var(--navy);
+  position:relative;overflow:hidden;
+}
+#teacher-portal::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 80% at 80% 50%,rgba(83,74,183,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 80%,rgba(29,158,117,.08) 0%,transparent 50%);
+}
+.tp-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+.tp-info .tp-label{
+  font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ngold2);
+  display:flex;align-items:center;gap:8px;margin-bottom:1.25rem;
+}
+.tp-info .tp-label::before{content:'';width:20px;height:1px;background:var(--ngold2);}
+.tp-info h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,3.5vw,44px);font-weight:600;
+  line-height:1.1;color:var(--white);margin-bottom:14px;
+}
+.tp-info h2 span{color:var(--ngold2);font-style:italic;}
+.tp-info p{
+  font-size:15px;font-weight:300;color:rgba(255,255,255,.55);
+  line-height:1.8;margin-bottom:22px;max-width:420px;
+}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.feature-list li{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;color:rgba(255,255,255,.65);
+}
+.feature-list li::before{content:'✦';color:var(--ngold2);font-size:10px;flex-shrink:0;}
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .hero-left > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
-    .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
-    .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
-    .hero-left > *:nth-child(5) { animation-delay: 0.7s; }
+/* Login card */
+.login-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:40px;
+  backdrop-filter:blur(10px);
+}
+.login-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:600;color:var(--white);margin-bottom:6px;
+}
+.login-card>p{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;}
+.lf-field{margin-bottom:16px;}
+.lf-field label{
+  display:block;font-size:11px;font-weight:600;
+  color:rgba(255,255,255,.4);text-transform:uppercase;
+  letter-spacing:.07em;margin-bottom:7px;
+}
+.lf-field input{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;font-family:'DM Sans',sans-serif;
+  font-size:14px;color:var(--white);outline:none;
+  transition:border-color .2s;
+}
+.lf-field input::placeholder{color:rgba(255,255,255,.25);}
+.lf-field input:focus{border-color:rgba(201,150,58,.5);background:rgba(255,255,255,.07);}
+.login-btn{
+  width:100%;padding:13px;
+  background:var(--ngold);color:var(--navy);
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  border:none;border-radius:8px;cursor:pointer;
+  transition:background .2s;margin-top:8px;
+}
+.login-btn:hover{background:var(--ngold2);}
+.login-error{
+  margin-top:12px;padding:10px 14px;
+  background:rgba(240,153,123,.1);
+  border:1px solid rgba(240,153,123,.3);
+  border-radius:6px;font-size:13px;color:#F0997B;display:none;
+}
+.login-hint{
+  margin-top:16px;padding:10px 14px;
+  background:rgba(201,150,58,.07);
+  border:1px solid rgba(201,150,58,.2);
+  border-radius:6px;font-size:12px;color:rgba(201,150,58,.8);line-height:1.6;
+}
+.login-hint code{background:rgba(201,150,58,.15);padding:1px 5px;border-radius:3px;}
 
-    /* ══════════════════════════════════════════
-       ENROLLMENT MODAL
-    ══════════════════════════════════════════ */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 999;
-      background: rgba(10, 30, 20, 0.65);
-      backdrop-filter: blur(6px);
-      align-items: center; justify-content: center;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    .modal-overlay.active { display: flex; }
+/* ── ENROLL CTA ──────────────────────────────────────────────────── */
+.enroll{background:var(--gd);text-align:center;padding:7rem 5rem;position:relative;overflow:hidden;}
+.enroll::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(29,158,117,.3) 0%,transparent 60%);
+}
+.enroll-inner{position:relative;z-index:1;}
+.enroll .section-label{justify-content:center;color:var(--gold);}
+.enroll .section-label::before{background:var(--gold);}
+.enroll .section-title{color:var(--white);margin:0 auto 1rem;max-width:600px;}
+.enroll-desc{font-size:15px;font-weight:300;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;}
+.enroll-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-light{
+  background:var(--white);color:var(--gd);
+  padding:14px 36px;border-radius:40px;
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;
+  text-decoration:none;letter-spacing:.04em;
+  transition:background .2s,transform .15s;display:inline-block;
+  border:none;cursor:pointer;
+}
+.btn-light:hover{background:var(--gs);transform:translateY(-1px);}
+.btn-ghost{
+  color:rgba(255,255,255,.7);padding:14px 24px;border-radius:40px;
+  border:0.5px solid rgba(255,255,255,.25);
+  font-family:'Outfit',sans-serif;font-size:14px;font-weight:400;
+  text-decoration:none;letter-spacing:.04em;
+  transition:border-color .2s,color .2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);color:var(--white);}
+.enroll-note{margin-top:2rem;font-size:12px;color:rgba(255,255,255,.35);}
 
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(32px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+footer{
+  background:var(--ink);padding:2.5rem 5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(255,255,255,.6);}
+.footer-orgs{font-size:12px;color:rgba(255,255,255,.3);margin-top:4px;}
+.footer-contact{text-align:right;font-size:13px;color:rgba(255,255,255,.4);}
+.footer-contact a{color:var(--gm);text-decoration:none;}
+.footer-contact a:hover{color:var(--white);}
 
-    .modal-box {
-      background: #fff;
-      border-radius: 16px;
-      width: 100%; max-width: 680px;
-      max-height: 92vh;
-      overflow-y: auto;
-      position: relative;
-      animation: modalIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
-      border: 0.5px solid #ddddd5;
-      /* Custom scrollbar */
-      scrollbar-width: thin;
-      scrollbar-color: #1D9E75 #f5f5f0;
-    }
-    .modal-box::-webkit-scrollbar { width: 5px; }
-    .modal-box::-webkit-scrollbar-track { background: #f5f5f0; border-radius: 8px; }
-    .modal-box::-webkit-scrollbar-thumb { background: #1D9E75; border-radius: 8px; }
+/* ══════════════════════════════════════════════════════════════════
+   ENROLLMENT MODAL
+══════════════════════════════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,20,15,.6);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal-box{
+  background:var(--white);border-radius:16px;
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  box-shadow:0 24px 64px rgba(0,0,0,.2);
+  transform:translateY(12px);transition:transform .25s;
+}
+.modal-overlay.active .modal-box{transform:translateY(0);}
+.modal-close{
+  display:flex;justify-content:flex-end;
+  padding:1rem 1.25rem .5rem;
+}
+.modal-close button{
+  background:none;border:1px solid #e0dfd8;border-radius:50%;
+  width:32px;height:32px;font-size:18px;line-height:1;cursor:pointer;
+  color:#888780;display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s;
+}
+.modal-close button:hover{background:#ffe5e0;color:#c0392b;border-color:#c0392b;}
+.modal-form-wrap{padding:0 2rem 2.5rem;font-family:'DM Sans',sans-serif;}
+.gig-header{
+  border-left:3px solid var(--gm);padding:1rem 1.25rem;
+  margin-bottom:1.5rem;background:#f9f9f6;border-radius:0 8px 8px 0;
+}
+.gig-header .org{font-size:11px;color:#888780;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.gig-header h2{font-family:'Lora',serif;font-size:22px;font-weight:500;margin:0 0 2px;color:#1a1a18;}
+.gig-header .sub{font-size:13px;color:#888780;}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;}
+.mbadge{font-size:12px;padding:4px 10px;border-radius:20px;font-weight:500;}
+.mbadge-green{background:#E1F5EE;color:#0F6E56;}
+.mbadge-teal{background:#E1F5EE;color:#085041;}
+.mbadge-gray{background:#f5f5f0;color:#888780;border:0.5px solid #ddddd5;}
+.info-box{
+  background:#E1F5EE;border:0.5px solid #5DCAA5;
+  border-radius:8px;padding:10px 14px;font-size:13px;
+  color:#0F6E56;margin-bottom:1.5rem;line-height:1.6;
+}
+.info-box strong{font-weight:500;}
+.f-section{margin-bottom:1.5rem;}
+.f-section-title{
+  font-size:11px;font-weight:500;color:#0F6E56;
+  letter-spacing:.07em;text-transform:uppercase;
+  margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid #ddddd5;
+}
+.mfield{margin-bottom:12px;}
+.mfield label{display:block;font-size:13px;color:#5f5e5a;margin-bottom:4px;font-weight:500;}
+.mfield label span.req{color:#D85A30;margin-left:2px;}
+.mfield input:not([type=radio]):not([type=checkbox]),
+.mfield select,
+.mfield textarea{
+  width:100%;font-family:'DM Sans',sans-serif;font-size:14px;
+  padding:8px 12px;border:0.5px solid #b4b2a9;border-radius:8px;
+  background:#fff;color:#1a1a18;outline:none;
+  transition:border-color .15s,box-shadow .15s;appearance:none;
+}
+.mfield input:not([type=radio]):not([type=checkbox]):focus,
+.mfield select:focus,.mfield textarea:focus{
+  border-color:var(--gm);box-shadow:0 0 0 3px rgba(29,158,117,.12);
+}
+.mfield textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.radio-group{display:flex;flex-direction:column;gap:7px;margin-top:6px;}
+.radio-opt{display:flex;align-items:center;gap:8px;font-size:14px;color:#1a1a18;}
+.radio-opt input[type=radio]{accent-color:var(--gm);width:16px;height:16px;cursor:pointer;flex-shrink:0;}
+.radio-opt label{cursor:pointer;font-size:14px;color:#1a1a18;font-weight:400;}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;}
+.check-opt{
+  display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#1a1a18;
+  padding:6px 8px;border:0.5px solid #ddddd5;border-radius:8px;
+  transition:background .12s;cursor:pointer;
+}
+.check-opt:hover{background:#f9f9f6;}
+.check-opt input[type=checkbox]{accent-color:var(--gm);margin-top:2px;width:15px;height:15px;flex-shrink:0;cursor:pointer;}
+.check-opt label{cursor:pointer;font-size:13px;color:#1a1a18;font-weight:400;line-height:1.4;}
+.agree-section{display:flex;flex-direction:column;gap:10px;}
+.agree-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#5f5e5a;line-height:1.6;cursor:pointer;}
+.agree-row input{accent-color:var(--gm);width:16px;height:16px;flex-shrink:0;margin-top:2px;cursor:pointer;}
+.contact-note{font-size:12px;color:#888780;margin-top:1rem;}
+.contact-note strong{font-weight:500;color:#5f5e5a;}
+.submit-btn{
+  width:100%;padding:12px;background:var(--gm);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;
+  border:none;border-radius:8px;cursor:pointer;
+  margin-top:1.5rem;transition:background .15s;letter-spacing:.02em;
+}
+.submit-btn:hover{background:var(--gd);}
+.success-msg{display:none;text-align:center;padding:2.5rem 1rem;}
+.check-circle{
+  width:56px;height:56px;border-radius:50%;background:#E1F5EE;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;font-size:26px;color:#0F6E56;
+}
+.success-msg h2{font-family:'Lora',serif;font-size:20px;font-weight:500;margin:0 0 8px;color:#1a1a18;}
+.success-msg p{font-size:14px;color:#5f5e5a;line-height:1.7;}
 
-    .modal-close {
-      position: sticky; top: 0; left: 0; right: 0;
-      display: flex; justify-content: flex-end;
-      padding: 12px 16px 0;
-      background: linear-gradient(to bottom, #fff 80%, transparent);
-      z-index: 10;
-    }
-    .modal-close button {
-      background: #f5f5f0; border: 0.5px solid #ddddd5;
-      border-radius: 50%; width: 32px; height: 32px;
-      font-size: 18px; line-height: 1; cursor: pointer;
-      color: #888780; display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s, color 0.15s;
-    }
-    .modal-close button:hover { background: #ffe5e0; color: #c0392b; border-color: #c0392b; }
+/* ══════════════════════════════════════════════════════════════════
+   TEACHER DASHBOARD
+══════════════════════════════════════════════════════════════════ */
+#dashboard{
+  display:none;min-height:100vh;
+  background:#F5F3EE;color:var(--ink);
+}
+.dash-header{
+  background:var(--navy);padding:0 48px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  position:sticky;top:0;z-index:50;
+}
+.dash-left{display:flex;align-items:center;gap:14px;}
+.dash-logo-mark{
+  width:28px;height:28px;background:var(--ngold);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:14px;color:var(--navy);
+}
+.dash-logo-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--white);}
+.dash-divider{width:1px;height:20px;background:rgba(255,255,255,.12);}
+.dash-sub{font-size:12px;color:rgba(255,255,255,.35);}
+.dash-right{display:flex;align-items:center;gap:14px;}
+.dash-user{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.55);}
+.dash-avatar{
+  width:28px;height:28px;background:var(--gm);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;color:var(--white);
+}
+.logout-btn{
+  padding:6px 14px;background:transparent;
+  border:1px solid rgba(255,255,255,.18);border-radius:6px;
+  color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.logout-btn:hover{background:rgba(255,255,255,.05);color:var(--white);}
 
-    .modal-form-wrap {
-      padding: 0 2rem 2.5rem;
-      font-family: 'DM Sans', sans-serif;
-    }
+.dash-body{padding:40px 48px;max-width:1100px;margin:0 auto;}
+.dash-welcome{margin-bottom:32px;padding-bottom:28px;border-bottom:1px solid #E5E1D9;}
+.dash-welcome-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;background:#FEF3C7;border:1px solid #FDE68A;
+  border-radius:999px;font-size:11px;font-weight:600;color:#92400E;
+  letter-spacing:.05em;margin-bottom:10px;
+}
+.dash-welcome h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:600;color:var(--ink);margin-bottom:4px;
+}
+.dash-welcome p{font-size:14px;color:#6B7280;}
 
-    /* ── FORM STYLES (scoped inside modal) ── */
-    .gig-header {
-      border-left: 3px solid #1D9E75; padding: 1rem 1.25rem;
-      margin-bottom: 1.5rem; background: #f9f9f6; border-radius: 0 8px 8px 0;
-    }
-    .gig-header .org { font-size: 11px; color: #888780; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
-    .gig-header h2 { font-family: 'Lora', serif; font-size: 22px; font-weight: 500; margin: 0 0 2px; color: #1a1a18; }
-    .gig-header .sub { font-size: 13px; color: #888780; }
-    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
-    .badge-green { background: #E1F5EE; color: #0F6E56; }
-    .badge-teal { background: #E1F5EE; color: #085041; }
-    .badge-gray { background: #f5f5f0; color: #888780; border: 0.5px solid #ddddd5; }
-    .info-box {
-      background: #E1F5EE; border: 0.5px solid #5DCAA5;
-      border-radius: 8px; padding: 10px 14px; font-size: 13px;
-      color: #0F6E56; margin-bottom: 1.5rem; line-height: 1.6;
-    }
-    .info-box strong { font-weight: 500; }
-    .f-section { margin-bottom: 1.5rem; }
-    .f-section-title {
-      font-size: 11px; font-weight: 500; color: #0F6E56;
-      letter-spacing: 0.07em; text-transform: uppercase;
-      margin-bottom: 10px; padding-bottom: 6px; border-bottom: 0.5px solid #ddddd5;
-    }
-    .field { margin-bottom: 12px; }
-    .field label { display: block; font-size: 13px; color: #5f5e5a; margin-bottom: 4px; font-weight: 500; }
-    .field label span.req { color: #D85A30; margin-left: 2px; }
-    .field input:not([type=radio]):not([type=checkbox]),
-    .field select,
-    .field textarea {
-      width: 100%; font-family: 'DM Sans', sans-serif; font-size: 14px;
-      padding: 8px 12px; border: 0.5px solid #b4b2a9; border-radius: 8px;
-      background: #fff; color: #1a1a18; outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s; appearance: none;
-    }
-    .field input:not([type=radio]):not([type=checkbox]):focus,
-    .field select:focus, .field textarea:focus {
-      border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
-    }
-    .field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .radio-group { display: flex; flex-direction: column; gap: 7px; margin-top: 6px; }
-    .radio-opt { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #1a1a18; }
-    .radio-opt input[type=radio] { accent-color: #1D9E75; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
-    .radio-opt label { cursor: pointer; font-size: 14px; color: #1a1a18; font-weight: 400; }
-    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
-    .check-opt {
-      display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #1a1a18;
-      padding: 6px 8px; border: 0.5px solid #ddddd5; border-radius: 8px;
-      transition: background 0.12s; cursor: pointer;
-    }
-    .check-opt:hover { background: #f9f9f6; }
-    .check-opt input[type=checkbox] { accent-color: #1D9E75; margin-top: 2px; width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; }
-    .check-opt label { cursor: pointer; font-size: 13px; color: #1a1a18; font-weight: 400; line-height: 1.4; }
-    .agree-section { display: flex; flex-direction: column; gap: 10px; }
-    .agree-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #5f5e5a; line-height: 1.6; cursor: pointer; }
-    .agree-row input { accent-color: #1D9E75; width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-    .contact-note { font-size: 12px; color: #888780; margin-top: 1rem; }
-    .contact-note strong { font-weight: 500; color: #5f5e5a; }
-    .submit-btn {
-      width: 100%; padding: 12px; background: #1D9E75; color: #fff;
-      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
-      border: none; border-radius: 8px; cursor: pointer;
-      margin-top: 1.5rem; transition: background 0.15s; letter-spacing: 0.02em;
-    }
-    .submit-btn:hover { background: #0F6E56; }
-    .submit-btn:active { transform: scale(0.99); }
-    .success-msg { display: none; text-align: center; padding: 2.5rem 1rem; }
-    .check-circle {
-      width: 56px; height: 56px; border-radius: 50%; background: #E1F5EE;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem; font-size: 26px; color: #0F6E56;
-    }
-    .success-msg h2 { font-family: 'Lora', serif; font-size: 20px; font-weight: 500; margin: 0 0 8px; color: #1a1a18; }
-    .success-msg p { font-size: 14px; color: #5f5e5a; line-height: 1.7; }
+/* Lesson Viewer */
+.lesson-viewer{
+  background:var(--white);border-radius:16px;
+  border:1px solid #E5E1D9;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.lv-top{background:var(--navy);padding:24px 28px 0;}
+.lv-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.lv-series{font-size:11px;font-weight:500;color:var(--ngold2);letter-spacing:.08em;text-transform:uppercase;}
+.lv-main-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--white);}
+.lv-sub{font-size:13px;color:rgba(255,255,255,.4);font-weight:300;}
+.pbar{height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:16px;}
+.pfill{height:100%;background:var(--ngold);border-radius:2px;transition:width .4s ease;}
+.lesson-tabs{display:flex;gap:0;overflow-x:auto;}
+.lesson-tabs::-webkit-scrollbar{display:none;}
+.ltab{
+  padding:10px 18px;font-size:12px;font-weight:500;
+  color:rgba(255,255,255,.4);border:none;background:transparent;
+  cursor:pointer;border-bottom:2px solid transparent;
+  white-space:nowrap;transition:all .15s;font-family:'DM Sans',sans-serif;
+}
+.ltab:hover:not(.on){color:rgba(255,255,255,.7);}
+.ltab.on{color:var(--ngold2);border-bottom-color:var(--ngold);}
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 3rem 1.5rem 2rem; }
-      .hero-right { min-height: 340px; }
-      section { padding: 4rem 1.5rem; }
-      .about-inner, .schedule-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .outcomes-grid { grid-template-columns: 1fr; }
-      .curriculum-grid { grid-template-columns: 1fr; }
-      .week-card:nth-child(2n) { border-right: 0.5px solid rgba(255,255,255,0.07); }
-      .enroll { padding: 4rem 1.5rem; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
-      .footer-contact { text-align: left; }
-    }
-    @media (max-width: 520px) {
-      .modal-form-wrap { padding: 0 1.25rem 2rem; }
-      .grid-2 { grid-template-columns: 1fr; }
-      .check-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+.lv-body{padding:28px;}
+.lesson{display:none;}
+.lesson.on{display:block;}
+
+/* Lesson section tabs */
+.sec-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+.stab{
+  padding:5px 14px;font-size:12px;font-weight:400;
+  border-radius:999px;border:1px solid #e2ddd5;
+  background:var(--white);color:#6B7280;
+  cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;
+}
+.stab:hover:not(.on){background:#F5F3EE;color:var(--ink);}
+.stab.on{background:var(--gm);color:#E1F5EE;border-color:var(--gm);font-weight:500;}
+
+.sec{display:none;}
+.sec.on{display:block;}
+.sechead{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:600;color:var(--ink);margin-bottom:3px;
+}
+.secsub{font-size:13px;color:#6B7280;margin-bottom:16px;}
+
+/* Scripture */
+.vbox{
+  background:var(--viol);border-left:3px solid var(--vio);
+  padding:12px 16px;margin-bottom:14px;border-radius:0 6px 6px 0;
+}
+.vtext{font-size:13px;color:var(--vio2);line-height:1.65;font-style:italic;margin-bottom:3px;}
+.vref{font-size:11px;font-weight:600;color:var(--vio);}
+
+/* Cards */
+.card{background:var(--white);border:1px solid #e5e0d8;border-radius:10px;padding:14px 18px;margin-bottom:10px;}
+.cp{background:var(--viol);border-color:#AFA9EC;}
+.ct{background:#E1F5EE;border-color:#5DCAA5;}
+.ca{background:#FAEEDA;border-color:#EF9F27;}
+.cc{background:#FAECE7;border-color:#F0997B;}
+.ptitle{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.pbody{font-size:13px;color:#4B5563;line-height:1.65;}
+
+/* Badges on cards */
+.cbadge{display:inline-block;font-size:10px;font-weight:600;padding:2px 10px;border-radius:999px;margin-bottom:7px;letter-spacing:.03em;}
+.bp{background:#CECBF6;color:var(--vio2);}
+.bt{background:#9FE1CB;color:#085041;}
+.ba{background:#FAC775;color:#633806;}
+.bc{background:#F5C4B3;color:#712B13;}
+.bg{background:#D3D1C7;color:#444441;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.strow{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.stnum{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--vio);color:var(--viol);
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+.abox{background:#F9F7F4;border-radius:8px;padding:12px 16px;margin-top:10px;border:1px solid #EDE7DA;}
+.alabel{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.atext{font-size:13px;color:#4B5563;line-height:1.65;}
+.fbtns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.fbtn{
+  padding:8px 18px;font-size:12px;font-weight:500;
+  border-radius:8px;border:1px solid #e2ddd5;
+  background:var(--white);color:var(--ink);
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;
+}
+.fbtn:hover{background:#F5F3EE;}
+.fbtn.pr{background:var(--vio);color:var(--viol);border-color:var(--vio);}
+.fbtn.pr:hover{background:var(--vio2);}
+.lhead{margin-bottom:14px;}
+.lnum{font-size:11px;font-weight:600;color:var(--vio);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;}
+.ltitle-inner{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.lsub-inner{font-size:13px;color:#6B7280;}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links li:not(:last-child):not(:nth-last-child(2)){display:none;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:3rem 1.5rem 2rem;}
+  .hero-right{min-height:300px;}
+  section{padding:4rem 1.5rem;}
+  .about-inner,.schedule-inner,.tp-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .outcomes-grid{grid-template-columns:1fr;}
+  .curriculum-grid{grid-template-columns:1fr;}
+  .week-card:nth-child(2n){border-right:0.5px solid rgba(255,255,255,.07);}
+  .enroll{padding:4rem 1.5rem;}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+  .footer-contact{text-align:left;}
+  .dash-body{padding:24px 20px;}
+  .dash-header{padding:0 20px;}
+  .lv-body{padding:20px;}
+  .lv-top{padding:20px 20px 0;}
+  .g2{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .modal-form-wrap{padding:0 1.25rem 2rem;}
+  .grid-2{grid-template-columns:1fr;}
+  .check-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     MAIN SITE
+═══════════════════════════════════════════════════════════════ -->
+<div id="site">
+
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">Grow in Grace</a>
+  <a class="nav-logo" href="#hero">
+    <div class="nav-logo-mark">G</div>
+    Grow in Grace
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#schedule">Schedule</a></li>
     <li><a href="#instructors">Instructors</a></li>
-    <li><a class="nav-cta" href="#enroll" onclick="openModal(event)">Enroll now</a></li>
+    <li><a href="#teacher-portal" class="nav-teacher">Teacher Portal</a></li>
+    <li><a href="#enroll" class="nav-cta" onclick="openModal(event)">Enroll now</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="hero" style="padding: 0;">
+<section class="hero" id="hero" style="padding:0;">
   <div class="hero-left">
-    <div class="hero-eyebrow">Short Course &middot; Batch 1 &middot; NORLAG</div>
+    <div class="hero-eyebrow">Short Course · Batch 1 · NORLAG Youth Ministries</div>
     <h1>Grow in<br><em>Grace</em></h1>
     <p class="hero-desc">A six-week intensive short course equipping NORLAG youth leaders with a deep understanding of Grace Doctrines — to articulate, defend, and live them out.</p>
     <div class="hero-actions">
@@ -520,12 +758,12 @@
           <div class="hero-stat-desc">Sessions<br>(lectures + reflections)</div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-num">5</div>
           <div class="hero-stat-desc">Expert<br>instructors</div>
         </div>
       </div>
       <div class="hero-verse">
-        "But grow in grace, and in the knowledge of our Lord and Savior Jesus Christ."
+        "But grow in grace, and in the knowledge of our Lord and Saviour Jesus Christ."
         <cite>— 2 Peter 3:18</cite>
       </div>
     </div>
@@ -538,12 +776,8 @@
     <div>
       <div class="section-label">About the course</div>
       <h2 class="section-title">Rooted in doctrine.<br><em>Equipped for leadership.</em></h2>
-      <p class="section-body">
-        This short course is designed to equip youth leaders with a profound understanding of Grace Doctrines as taught by Things to Come Mission, Inc. Participants delve into key doctrinal statements, learn to articulate and defend their beliefs, and apply their knowledge in Christian lifestyle and leadership roles.
-      </p>
-      <p class="section-body" style="margin-top: 1rem;">
-        Organized by the International Grace Bible Institute in collaboration with the Northern Luzon Association of Grace Churches, this program fosters a stronger, more unified Grace youth community through virtual lectures, reflective fellowships, and practical assignments.
-      </p>
+      <p class="section-body">This short course is designed to equip youth leaders with a profound understanding of Grace Doctrines as taught by Things to Come Mission, Inc. Participants delve into key doctrinal statements, learn to articulate and defend their beliefs, and apply their knowledge in Christian lifestyle and leadership roles.</p>
+      <p class="section-body" style="margin-top:1rem;">Organized by the International Grace Bible Institute in collaboration with the Northern Luzon Association of Grace Churches, this program fosters a stronger, more unified Grace youth community through virtual lectures, reflective fellowships, and practical assignments.</p>
     </div>
     <div class="about-right">
       <div class="about-card">
@@ -615,9 +849,9 @@
       </div>
       <div class="week-card">
         <span class="week-badge">Week 4</span>
-        <h3>The Godhead and Jesus Christ</h3>
+        <h3>The Godhead of Christ</h3>
         <p>Understand Jesus' deity and humanity, highlight His critical role in salvation, and explain His unchanging deity and evolving relationship with Israel and the Body.</p>
-        <div class="ref">Baker, C.F. (1956) — The Godhead and Christ, pp. 16–17</div>
+        <div class="ref">Baker, C.F. (1956) — The Godhead of Christ, pp. 16–17</div>
       </div>
       <div class="week-card">
         <span class="week-badge">Week 5</span>
@@ -641,7 +875,7 @@
     <div>
       <div class="section-label">Important dates</div>
       <h2 class="section-title">Scheme of <em>work</em></h2>
-      <p class="section-body">Sessions run every Wednesday (reflection) and Saturday (lecture) from 6:00 to 7:00 PM.</p>
+      <p class="section-body">Sessions run every Monday (lecture) and Friday (reflection) from 6:00 to 7:00 PM.</p>
       <table class="schedule-table">
         <thead><tr><th>Date</th><th>Activity</th></tr></thead>
         <tbody>
@@ -654,12 +888,12 @@
         </tbody>
       </table>
     </div>
-    <div class="schedule-right">
+    <div>
       <div class="section-label">Course policy</div>
       <h2 class="section-title">What to <em>expect</em></h2>
       <ul class="policy-list">
-        <li class="policy-item"><span class="policy-dot"></span><span>This course is <strong>free</strong> for all NORLAG youth [officers and members] — no contributions collected.</span></li>
-        <li class="policy-item"><span class="policy-dot"></span><span>Participants are allowed <strong>two absences</strong> only. Exceeding this results in automatic withdrawal.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>This course is <strong>free</strong> for all NORLAG youth officers — no contributions collected.</span></li>
+        <li class="policy-item"><span class="policy-dot"></span><span>Participants are allowed <strong>one absence</strong> only. Exceeding this results in automatic withdrawal.</span></li>
         <li class="policy-item"><span class="policy-dot"></span><span>Withdrawn participants may <strong>re-enroll</strong> in the next available batch.</span></li>
         <li class="policy-item"><span class="policy-dot"></span><span>Active engagement in discussions, assignments, and group activities is required.</span></li>
         <li class="policy-item"><span class="policy-dot"></span><span>All course materials — readings and resources — will be distributed <strong>electronically</strong>.</span></li>
@@ -715,6 +949,39 @@
   </div>
 </section>
 
+<!-- TEACHER PORTAL -->
+<section id="teacher-portal" style="padding:6rem 5rem;">
+  <div class="teacher-bg"></div>
+  <div class="tp-grid">
+    <div class="tp-info">
+      <div class="tp-label">Instructor Access</div>
+      <h2>Access the full<br><span>lesson viewer</span></h2>
+      <p>Log in with your teacher credentials to access the complete five-lesson GIG curriculum — with scripture references, teaching cards, discussion prompts, and section-by-section navigation.</p>
+      <ul class="feature-list">
+        <li>All 5 lessons with tabbed section navigation</li>
+        <li>Scripture verses, teaching analogies &amp; doctrine cards</li>
+        <li>Discussion questions &amp; reflection activities</li>
+        <li>Updated Lesson 2 — The Godhead (NORLAG edition)</li>
+        <li>Progress tracking across lessons</li>
+      </ul>
+    </div>
+    <div class="login-card">
+      <h3>Teacher Sign In</h3>
+      <p>Enter your credentials to access the curriculum.</p>
+      <div class="lf-field">
+        <label>Username</label>
+        <input type="text" id="uname" placeholder="Enter username" autocomplete="off">
+      </div>
+      <div class="lf-field">
+        <label>Password</label>
+        <input type="password" id="pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="login-btn" onclick="doLogin()">Sign In →</button>
+      <div class="login-error" id="lerr">Incorrect username or password. Please try again.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ENROLL CTA -->
 <section class="enroll" id="enroll">
   <div class="enroll-inner">
@@ -732,8 +999,8 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-brand">Grow in Grace — Short Course</div>
-    <div class="footer-orgs">Things to Come Mission, Inc. &middot; International Grace Bible Institute &middot; NORLAG</div>
+    <div class="footer-brand">Grow in Grace — Short Course · NORLAG Youth Ministries</div>
+    <div class="footer-orgs">Things to Come Mission, Inc. · International Grace Bible Institute · NORLAG</div>
   </div>
   <div class="footer-contact">
     Course coordinator: <a href="tel:09617930629">0961-793-0629</a><br>
@@ -741,94 +1008,57 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════════
+</div><!-- end #site -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
      ENROLLMENT MODAL
-══════════════════════════════════════════ -->
+═══════════════════════════════════════════════════════════════ -->
 <div class="modal-overlay" id="enrollModal" role="dialog" aria-modal="true" aria-label="Enrollment Form">
   <div class="modal-box" id="modalBox">
-
     <div class="modal-close">
-      <button onclick="closeModal()" aria-label="Close enrollment form">&times;</button>
+      <button onclick="closeModal()" aria-label="Close">&times;</button>
     </div>
-
     <div class="modal-form-wrap">
-
       <form id="form-area" action="https://formspree.io/f/mkoygyba" method="POST">
-
         <div class="gig-header">
-          <p class="org">Things to Come Mission, Inc. &middot; IGBI &middot; NORLAG</p>
+          <p class="org">Things to Come Mission, Inc. · IGBI · NORLAG</p>
           <h2>Grow in Grace</h2>
-          <p class="sub">Short Course Enrollment Form &mdash; Batch 1</p>
+          <p class="sub">Short Course Enrollment Form — Batch 1</p>
         </div>
-
         <div class="badge-row">
-          <span class="badge badge-green">Free for NORLAG youth officers</span>
-          <span class="badge badge-teal">6-week virtual program</span>
-          <span class="badge badge-gray">Pass / Fail</span>
+          <span class="mbadge mbadge-green">Free for NORLAG youth officers</span>
+          <span class="mbadge mbadge-teal">6-week virtual program</span>
+          <span class="mbadge mbadge-gray">Pass / Fail</span>
         </div>
-
         <div class="info-box">
           <strong>Before you enroll:</strong> This course runs every Monday (lecture) and Friday (reflection), 6:00–7:00 PM. Participants are allowed <strong>one absence</strong> only. Exceeding this results in automatic withdrawal. Completion is recognized with a certificate at a face-to-face graduation fellowship.
         </div>
 
-        <!-- Personal Information -->
         <div class="f-section">
           <div class="f-section-title">Personal information</div>
           <div class="grid-2">
-            <div class="field">
-              <label>First name <span class="req">*</span></label>
-              <input type="text" id="fname" name="first_name" placeholder="e.g. Maria" />
-            </div>
-            <div class="field">
-              <label>Last name <span class="req">*</span></label>
-              <input type="text" id="lname" name="last_name" placeholder="e.g. Santos" />
-            </div>
+            <div class="mfield"><label>First name <span class="req">*</span></label><input type="text" id="fname" name="first_name" placeholder="e.g. Maria" /></div>
+            <div class="mfield"><label>Last name <span class="req">*</span></label><input type="text" id="lname" name="last_name" placeholder="e.g. Santos" /></div>
           </div>
           <div class="grid-2">
-            <div class="field">
-              <label>Age <span class="req">*</span></label>
-              <input type="number" id="age" name="age" placeholder="e.g. 23" min="13" max="40" />
-            </div>
-            <div class="field">
-              <label>Sex <span class="req">*</span></label>
-              <select id="sex" name="sex">
-                <option value="">Select</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
+            <div class="mfield"><label>Age <span class="req">*</span></label><input type="number" id="age" name="age" placeholder="e.g. 23" min="13" max="40" /></div>
+            <div class="mfield"><label>Sex <span class="req">*</span></label><select id="sex" name="sex"><option value="">Select</option><option>Male</option><option>Female</option></select></div>
           </div>
-          <div class="field">
-            <label>Email address <span class="req">*</span></label>
-            <input type="email" id="email" name="email" placeholder="youremail@example.com" />
-          </div>
-          <div class="field">
-            <label>Mobile number <span class="req">*</span></label>
-            <input type="tel" id="phone" name="mobile_number" placeholder="e.g. 09XX-XXX-XXXX" />
-          </div>
-          <div class="field">
-            <label>Facebook profile link</label>
-            <input type="url" id="fb" name="facebook_profile" placeholder="https://facebook.com/yourprofile" />
-          </div>
+          <div class="mfield"><label>Email address <span class="req">*</span></label><input type="email" id="email" name="email" placeholder="youremail@example.com" /></div>
+          <div class="mfield"><label>Mobile number <span class="req">*</span></label><input type="tel" id="phone" name="mobile_number" placeholder="e.g. 09XX-XXX-XXXX" /></div>
+          <div class="mfield"><label>Facebook profile link</label><input type="url" id="fb" name="facebook_profile" placeholder="https://facebook.com/yourprofile" /></div>
         </div>
 
-        <!-- Church & Leadership -->
         <div class="f-section">
           <div class="f-section-title">Church &amp; leadership</div>
-          <div class="field">
-            <label>Local Grace church <span class="req">*</span></label>
-            <input type="text" id="church" name="local_church" placeholder="e.g. GGCC Palattao" />
-          </div>
-          <div class="field">
-            <label>Name of your Pastor or Bible Woman <span class="req">*</span></label>
-            <input type="text" id="pastor" name="pastor_or_bible_woman" placeholder="Full name" />
-          </div>
+          <div class="mfield"><label>Local Grace church <span class="req">*</span></label><input type="text" id="church" name="local_church" placeholder="e.g. GGCC Palattao" /></div>
+          <div class="mfield"><label>Name of your Pastor or Bible Woman <span class="req">*</span></label><input type="text" id="pastor" name="pastor_or_bible_woman" placeholder="Full name" /></div>
         </div>
 
-        <!-- Availability -->
         <div class="f-section">
           <div class="f-section-title">Availability</div>
-          <div class="field">
+          <div class="mfield">
             <label>Can you attend both Monday lectures and Friday reflections (6–7 PM) for 6 weeks? <span class="req">*</span></label>
             <div class="radio-group">
               <div class="radio-opt"><input type="radio" name="avail" id="avail-yes" value="yes" /><label for="avail-yes">Yes, I can commit to both sessions</label></div>
@@ -836,7 +1066,7 @@
               <div class="radio-opt"><input type="radio" name="avail" id="avail-unsure" value="unsure" /><label for="avail-unsure">I am not yet sure</label></div>
             </div>
           </div>
-          <div class="field">
+          <div class="mfield">
             <label>Do you have reliable internet access for virtual sessions? <span class="req">*</span></label>
             <div class="radio-group">
               <div class="radio-opt"><input type="radio" name="internet" id="inet-yes" value="yes" /><label for="inet-yes">Yes</label></div>
@@ -846,11 +1076,10 @@
           </div>
         </div>
 
-        <!-- Qualifying Questions -->
         <div class="f-section">
           <div class="f-section-title">Qualifying questions</div>
-          <div class="field">
-            <label>Which topics are you most eager to study in this course? (Select all that apply)</label>
+          <div class="mfield">
+            <label>Which topics are you most eager to study? (Select all that apply)</label>
             <div class="check-grid">
               <div class="check-opt"><input type="checkbox" name="topic" id="topic-bible" value="bible" /><label for="topic-bible">The Bible &amp; rightly dividing</label></div>
               <div class="check-opt"><input type="checkbox" name="topic" id="topic-godhead" value="godhead" /><label for="topic-godhead">The Godhead</label></div>
@@ -860,11 +1089,11 @@
               <div class="check-opt"><input type="checkbox" name="topic" id="topic-all" value="all" /><label for="topic-all">All of the above</label></div>
             </div>
           </div>
-          <div class="field">
+          <div class="mfield">
             <label>In your own words, briefly describe why you want to join this course <span class="req">*</span></label>
             <textarea id="motivation" name="motivation" placeholder="Share your reason for enrolling and what you hope to bring back to your local church..."></textarea>
           </div>
-          <div class="field">
+          <div class="mfield">
             <label>How familiar are you with the TCM, Inc. doctrinal statements? <span class="req">*</span></label>
             <div class="radio-group">
               <div class="radio-opt"><input type="radio" name="familiarity" id="fam-new" value="new" /><label for="fam-new">I am new to them</label></div>
@@ -875,117 +1104,403 @@
           </div>
         </div>
 
-        <!-- Agreement -->
         <div class="f-section">
           <div class="f-section-title">Agreement &amp; confirmation</div>
           <div class="agree-section">
-            <label class="agree-row">
-              <input type="checkbox" id="agree1" />
-              I confirm I am a registered youth officer of a NORLAG Grace church and understand this course is free of charge.
-            </label>
-            <label class="agree-row">
-              <input type="checkbox" id="agree2" />
-              I understand that exceeding one absence will result in automatic withdrawal, and I may re-enroll in the next batch.
-            </label>
-            <label class="agree-row">
-              <input type="checkbox" id="agree3" />
-              I commit to actively participating in discussions, completing all assignments, and contributing to group activities.
-            </label>
-            <label class="agree-row">
-              <input type="checkbox" id="agree4" />
-              I agree to provide feedback at the end of the course to help improve future iterations of the program.
-            </label>
+            <label class="agree-row"><input type="checkbox" id="agree1" />I confirm I am a registered youth officer of a NORLAG Grace church and understand this course is free of charge.</label>
+            <label class="agree-row"><input type="checkbox" id="agree2" />I understand that exceeding one absence will result in automatic withdrawal, and I may re-enroll in the next batch.</label>
+            <label class="agree-row"><input type="checkbox" id="agree3" />I commit to actively participating in discussions, completing all assignments, and contributing to group activities.</label>
+            <label class="agree-row"><input type="checkbox" id="agree4" />I agree to provide feedback at the end of the course to help improve future iterations of the program.</label>
           </div>
         </div>
-
         <p class="contact-note">For inquiries, contact the course coordinator at <strong>0961-793-0629</strong>.</p>
-
-        <button type="submit" class="submit-btn" onclick="handleSubmit(event)">Submit enrollment &rarr;</button>
+        <button type="submit" class="submit-btn" onclick="handleSubmit(event)">Submit enrollment →</button>
       </form>
-
       <div class="success-msg" id="success">
         <div class="check-circle">&#10003;</div>
         <h2>Enrollment submitted!</h2>
         <p>Thank you for enrolling in <em>Grow in Grace</em>.<br>You will receive a confirmation once your enrollment status is reviewed.<br><br>For questions, call <strong>0961-793-0629</strong>.</p>
       </div>
+    </div>
+  </div>
+</div>
 
-    </div><!-- /.modal-form-wrap -->
-  </div><!-- /.modal-box -->
-</div><!-- /.modal-overlay -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEACHER DASHBOARD
+═══════════════════════════════════════════════════════════════ -->
+<div id="dashboard">
+  <div class="dash-header">
+    <div class="dash-left">
+      <div class="dash-logo-mark">G</div>
+      <span class="dash-logo-text">GiG</span>
+      <div class="dash-divider"></div>
+      <span class="dash-sub">Grow in Grace Curriculum · Teacher View</span>
+    </div>
+    <div class="dash-right">
+      <div class="dash-user">
+        <div class="dash-avatar">T</div>
+        <span>Teacher</span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <div class="dash-welcome">
+      <div class="dash-welcome-tag">✦ Teacher Dashboard</div>
+      <h1>Bible, Doctrine &amp; The Ministry</h1>
+      <p>5 lessons · Grow in Grace curriculum · NORLAG Youth Ministries edition</p>
+    </div>
+
+    <div class="lesson-viewer">
+      <div class="lv-top">
+        <div class="lv-title-row">
+          <div>
+            <div class="lv-series">GiG Lesson Series</div>
+            <div class="lv-main-title">Bible, Doctrine &amp; The Ministry</div>
+            <div class="lv-sub">5 lessons ·  Grow in Grace curriculum</div>
+          </div>
+        </div>
+        <div class="pbar"><div class="pfill" id="pf" style="width:20%;"></div></div>
+        <div class="lesson-tabs">
+          <button class="ltab on" onclick="showLesson(0)">1 · The Bible</button>
+          <button class="ltab" onclick="showLesson(1)">2 · The Godhead</button>
+          <button class="ltab" onclick="showLesson(2)">3 · Jesus is God</button>
+          <button class="ltab" onclick="showLesson(3)">4 · Depravity</button>
+          <button class="ltab" onclick="showLesson(4)">5 · The Ministry</button>
+        </div>
+      </div>
+
+      <div class="lv-body">
+
+        <!-- LESSON 1 -->
+        <div class="lesson on" id="l0">
+          <div class="lhead"><p class="lnum">Lesson 1</p><p class="ltitle-inner">The Bible</p><p class="lsub-inner">God-breathed, progressive, rightly divided</p></div>
+          <div class="sec-tabs">
+            <button class="stab on" onclick="showSec(0,0)">What it is</button>
+            <button class="stab" onclick="showSec(0,1)">Progressive</button>
+            <button class="stab" onclick="showSec(0,2)">Right division</button>
+            <button class="stab" onclick="showSec(0,3)">Jesus &amp; Us</button>
+          </div>
+          <div class="sec on" id="l0s0">
+            <p class="sechead">The Bible is God-breathed</p><p class="secsub">Understanding why Scripture is our supreme authority</p>
+            <div class="vbox"><p class="vtext">"All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness."</p><p class="vref">2 Timothy 3:16</p></div>
+            <div class="card cp"><span class="cbadge bp">Doctrine</span><p class="ptitle">Official statement</p><p class="pbody">The entire Bible in its original writings is inerrant, verbally inspired of God, and of plenary authority. —  Grow in Grace, Grace Gospel Fellowship, Grace Bible College</p></div>
+            <div class="g2">
+              <div class="card"><span class="cbadge bt">Idea</span><p class="ptitle">The songwriter analogy</p><p class="pbody">God is the songwriter; the human writers are the singers. You hear a unique voice, but the message comes from God.</p></div>
+              <div class="card"><span class="cbadge ba">Key word</span><p class="ptitle">Inerrant</p><p class="pbody">The Bible has no mistakes. It is the "Supreme Court" of our lives — the final word on what is true.</p></div>
+            </div>
+            <div class="abox"><p class="alabel">Discussion</p><p class="atext">Ask the group: What makes the Bible different from any other book you've read? Why does it matter that it came from God?</p></div>
+          </div>
+          <div class="sec" id="l0s1">
+            <p class="sechead">Progressive revelation</p><p class="secsub">God revealed His plan in stages over thousands of years</p>
+            <div class="card ct"><span class="cbadge bt">Idea</span><p class="ptitle">The math class analogy</p><p class="pbody">You start with 1+1=2. Once you understand that, you move on to fractions and algebra. The early lessons are still true — you just follow the instructions for the level you are at now.</p></div>
+            <div class="card"><span class="cbadge bp">Why it matters</span><p class="ptitle">God's plan unfolds across time</p><p class="pbody">The Bible shows how God spoke to different people at different times. His plan for Jesus was prepared long before Jesus was even born.</p></div>
+            <div class="abox"><p class="alabel">Think about it</p><p class="atext">Can you think of a story or plan that unfolded slowly over time and made more sense at the end? How is the Bible's story similar?</p></div>
+          </div>
+          <div class="sec" id="l0s2">
+            <p class="sechead">Rightly dividing the Word</p><p class="secsub">Not every command is written directly to us</p>
+            <div class="vbox"><p class="vtext">"Do your best to present yourself to God as one approved, a worker who has no need to be ashamed, rightly handling the word of truth."</p><p class="vref">2 Timothy 2:15</p></div>
+            <div class="card cc"><span class="cbadge bc">Idea</span><p class="ptitle">The group text analogy</p><p class="pbody">If a message says "Pick up milk on your way home" and it was meant for your brother, you don't need to go to the store. You can learn that your family needs milk, but the command wasn't for you.</p></div>
+            <div class="card"><span class="cbadge ba">Practical example</span><p class="ptitle">Animal sacrifices</p><p class="pbody">In the Old Testament, God told people to sacrifice animals for sin. We don't do that today because Jesus was the final sacrifice — for everyone, forever.</p></div>
+            <div class="abox"><p class="alabel">Discussion</p><p class="atext">Can you think of other Old Testament commands that Jesus fulfilled so we no longer need to follow them literally? How does this help us read the Bible better?</p></div>
+          </div>
+          <div class="sec" id="l0s3">
+            <p class="sechead">What the Bible tells us about Jesus and us</p><p class="secsub">The main goal of Scripture is to lead us to Jesus</p>
+            <div class="g2">
+              <div class="card cp"><span class="cbadge bp">Who Jesus is</span><p class="ptitle">Truly God, truly man</p><p class="pbody">The Bible proves Jesus is both fully God and fully human — the unchanging God who became man to save us.</p></div>
+              <div class="card ct"><span class="cbadge bt">Why we need Him</span><p class="ptitle">Total depravity</p><p class="pbody">Our hearts are naturally broken by sin. We can't fix ourselves — which is exactly why we need a Savior.</p></div>
+            </div>
+            <div class="card ca"><span class="cbadge ba">The Good News</span><p class="ptitle">Salvation is a free gift</p><p class="pbody">We are saved simply by trusting that Jesus died for our sins and rose again. We don't earn it — we receive it.</p></div>
+          </div>
+        </div>
+
+        <!-- LESSON 2 — THE GODHEAD -->
+        <div class="lesson" id="l1">
+          <div class="lhead"><p class="lnum">Lesson 2</p><p class="ltitle-inner">The Godhead</p><p class="lsub-inner">The most fundamental doctrine for understanding the Bible</p></div>
+          <div class="sec-tabs">
+            <button class="stab on" onclick="showSec(1,0)">Nature</button>
+            <button class="stab" onclick="showSec(1,1)">Trinity</button>
+            <button class="stab" onclick="showSec(1,2)">Deity of Christ</button>
+            <button class="stab" onclick="showSec(1,3)">Holy Spirit</button>
+            <button class="stab" onclick="showSec(1,4)">Salvation</button>
+          </div>
+          <div class="sec on" id="l1s0">
+            <p class="sechead">The Nature of the Godhead</p><p class="secsub">One God eternally existing as three distinct Persons</p>
+            <div class="vbox"><p class="vtext">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."</p><p class="vref">Matthew 28:19</p></div>
+            <div class="card cp"><span class="cbadge bp">One Name, Three Persons</span><p class="ptitle">Singular name, plural Persons</p><p class="pbody">Matthew 28:19 uses "name" in the singular — showing that while there are three Persons, they share one divine essence. This is the bedrock of Trinitarian doctrine.</p></div>
+            <div class="card ct"><span class="cbadge bt">Distinct Personalities</span><p class="ptitle">Not three modes or offices</p><p class="pbody">The Father, Son, and Holy Spirit are not merely different "hats" God wears at different times. They are three distinct Persons regularly mentioned together in Paul's benedictions.</p></div>
+            <div class="card ca"><span class="cbadge ba">Equality in Deity</span><p class="ptitle">Each Person is fully God</p><p class="pbody">The Father is God. Jesus is called God in Hebrews 1:8. The Holy Spirit is called God in Acts 5:3–4. None is a fraction — each is the fullness of the one divine Being.</p></div>
+            <div class="abox"><p class="alabel">Discussion</p><p class="atext">Why does it matter that there are three distinct Persons and not just one God wearing three masks? How does this affect how we pray and relate to each Person?</p></div>
+          </div>
+          <div class="sec" id="l1s1">
+            <p class="sechead">Understanding the "Inscrutable" Trinity</p><p class="secsub">Illustrations that help us grasp what goes beyond human logic</p>
+            <div class="card cp"><span class="cbadge bp">Creation reflects its Creator</span><p class="ptitle">The universe's triunity</p><p class="pbody">Drawing from Nathan R. Wood, the universe is made of Space, Matter, and Time — and each has an inner "threeness." All of space is length, all is breadth, and all is height. You cannot have one without the others, yet each is the whole of that space. God built His own image into creation.</p></div>
+            <div class="card ca"><span class="cbadge ba">Science analogy</span><p class="ptitle">Like an electron</p><p class="pbody">Scientists describe an electron as acting like both a particle and a wave. That seems like a logical contradiction — yet both are true. Similarly, God is both Three and One. Human logic has limits; reality does not.</p></div>
+            <div class="abox"><p class="alabel">Think about it</p><p class="atext">Can you think of other things in creation that seem paradoxical but are still true? How does this prepare us to accept what we cannot fully picture about God?</p></div>
+          </div>
+          <div class="sec" id="l1s2">
+            <p class="sechead">The Deity of Jesus Christ</p><p class="secsub">Jesus is true God and true man — not one or the other</p>
+            <div class="vbox"><p class="vtext">"Jesus Christ is the same yesterday and today and forever."</p><p class="vref">Hebrews 13:8</p></div>
+            <div class="card cp"><span class="cbadge bp">Eternal Relationship</span><p class="ptitle">"Firstborn" and "Only Begotten" are titles, not timelines</p><p class="pbody">If God is an eternal Father, He must have an eternal Son. These titles do not mean Jesus was created in time — they are titles of privilege and headship, meaning He is the Heir and Boss of all creation.</p></div>
+            <div class="card ct"><span class="cbadge bt">Unchanging yet Changing</span><p class="ptitle">His deity never changes; His form and role did</p><p class="pbody">Jesus' essential deity is "the same yesterday, and today, and for ever." Yet He changed from the form of God to the form of man to reconcile the world, and from King of Israel to Head of the Body of Christ.</p></div>
+            <div class="abox"><p class="alabel">Reflection</p><p class="atext">What does it mean to you personally that Jesus did not give up His deity when He became human? Why is "true God and true man" essential — not optional?</p></div>
+          </div>
+          <div class="sec" id="l1s3">
+            <p class="sechead">The Personality of the Holy Spirit</p><p class="secsub">He is a Person — not a force, influence, or feeling</p>
+            <div class="card cp"><span class="cbadge bp">Divine Attributes</span><p class="ptitle">The Spirit possesses personality and deity</p><p class="pbody">The Holy Spirit is not an "it." He performs specific, personal works: convicting the world of sin, regenerating believers, and indwelling them permanently. These are acts of a Person with will and purpose — not an impersonal force.</p></div>
+            <div class="g2">
+              <div class="card ct"><span class="cbadge bt">He convicts</span><p class="ptitle">Of sin, righteousness &amp; judgment</p><p class="pbody">The Spirit draws people to recognize their need for Christ — no one comes to God without this work.</p></div>
+              <div class="card ca"><span class="cbadge ba">He indwells</span><p class="ptitle">Permanently, from salvation</p><p class="pbody">At the moment of belief, the Spirit takes up residence inside the believer — never to leave.</p></div>
+            </div>
+            <div class="abox"><p class="alabel">Discussion</p><p class="atext">How would your relationship with the Holy Spirit change if you thought of Him as a Person rather than a feeling or energy?</p></div>
+          </div>
+          <div class="sec" id="l1s4">
+            <p class="sechead">Why the Godhead Matters for Salvation</p><p class="secsub">The Trinity is not abstract theology — it is the foundation of the gospel</p>
+            <div class="card cc"><span class="cbadge bc">The Ethical Necessity</span><p class="ptitle">Only God could righteously pay the debt</p><p class="pbody">If Jesus were only a good man, it would be unethical for God to punish Him for the sins of others. Because Jesus is God manifested in the flesh, it is perfectly right for God Himself to pay the debt. Justice and mercy meet at the cross precisely because of the Trinity.</p></div>
+            <div class="card cp"><span class="cbadge bp">A Team of Three</span><p class="ptitle">Salvation is a joint effort of the Godhead</p><p class="pbody">The Father sent the Son. The Son paid the debt. The Holy Spirit applies that work to the believer. Maintaining these distinctions helps believers appreciate the full depth of God's grace.</p></div>
+            <div class="strow"><div class="stnum">1</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bp">The Father</span><p class="ptitle">Planned and sent</p><p class="pbody">Out of love, He designs the plan of redemption and sends the Son.</p></div></div>
+            <div class="strow"><div class="stnum">2</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bt">The Son</span><p class="ptitle">Came and paid</p><p class="pbody">Jesus became man, lived perfectly, and died as the sufficient sacrifice for all sin.</p></div></div>
+            <div class="strow"><div class="stnum">3</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge ba">The Holy Spirit</span><p class="ptitle">Applies and seals</p><p class="pbody">The Spirit brings the believer to faith, regenerates them, and seals them for the day of redemption.</p></div></div>
+            <div class="abox"><p class="alabel">Closing reflection</p><p class="atext">How does understanding salvation as the work of all three Persons deepen your gratitude? Which Person of the Trinity do you feel you know the least — and why?</p></div>
+            <div class="fbtns"><button class="fbtn pr">Explore the Trinity in Paul's letters ↗</button></div>
+          </div>
+        </div>
+
+        <!-- LESSON 3 -->
+        <div class="lesson" id="l2">
+          <div class="lhead"><p class="lnum">Lesson 3</p><p class="ltitle-inner">Jesus is God</p><p class="lsub-inner">True God and true man — why this changes everything</p></div>
+          <div class="sec-tabs">
+            <button class="stab on" onclick="showSec(2,0)">The Godhead</button>
+            <button class="stab" onclick="showSec(2,1)">Jesus: 100%+100%</button>
+            <button class="stab" onclick="showSec(2,2)">Why We Need Him</button>
+            <button class="stab" onclick="showSec(2,3)">Summary</button>
+          </div>
+          <div class="sec on" id="l2s0">
+            <p class="sechead">A team of three</p><p class="secsub">Father, Son, Holy Spirit — one God</p>
+            <div class="vbox"><p class="vtext">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."</p><p class="vref">Matthew 28:19</p></div>
+            <div class="card cp"><span class="cbadge bp">Space analogy</span><p class="ptitle">Three dimensions, one space</p><p class="pbody">You need length, breadth, and height to have space. Take one away and space doesn't exist. God is three Persons — remove one and you don't have the God of the Bible.</p></div>
+            <div class="card"><span class="cbadge bt">Each Person is fully God</span><p class="ptitle">The Father is God. Jesus is God. The Holy Spirit is God.</p><p class="pbody">They are distinct but not separate — three Persons, one Being.</p></div>
+          </div>
+          <div class="sec" id="l2s1">
+            <p class="sechead">Jesus: 100% God and 100% man</p><p class="secsub">He didn't pretend to be human, and He didn't stop being God</p>
+            <div class="vbox"><p class="vtext">"Jesus Christ is the same yesterday and today and forever."</p><p class="vref">Hebrews 13:8</p></div>
+            <div class="g2">
+              <div class="card cp"><span class="cbadge bp">"Firstborn" title</span><p class="ptitle">Heir, not created</p><p class="pbody">A title of honor meaning He is the Heir and the Boss — not that He was made after the Father.</p></div>
+              <div class="card ca"><span class="cbadge ba">Electron analogy</span><p class="ptitle">Particle and wave</p><p class="pbody">An electron is both at once. Hard to picture, but true. Jesus is both God and man — fully, simultaneously.</p></div>
+            </div>
+            <div class="card ct"><span class="cbadge bt">Why it matters</span><p class="ptitle">Only God can pay a divine debt</p><p class="pbody">Because Jesus is God, His sacrifice on the cross counts for the entire world — past, present, and future.</p></div>
+          </div>
+          <div class="sec" id="l2s2">
+            <p class="sechead">Total Depravity: why we need Him</p><p class="secsub">Sin broke our spiritual engine</p>
+            <div class="vbox"><p class="vtext">"For those who live according to the flesh cannot please God."</p><p class="vref">Romans 8:8</p></div>
+            <div class="card cc"><span class="cbadge bc">The enemy analogy</span><p class="ptitle">Heart at enmity</p><p class="pbody">A sworn enemy might do something "nice" physically, but their heart won't let them truly love that person. Before salvation, our hearts are like enemies toward God.</p></div>
+            <div class="card ct"><span class="cbadge bt">The good news</span><p class="ptitle">Dead people need life, not effort</p><p class="pbody">When we realize we are spiritually dead in sin, we stop trying to save ourselves. We realize we need someone to give us new life — and Jesus does exactly that.</p></div>
+            <div class="abox"><p class="alabel">Activity</p><p class="atext">Ask each person: "Have you ever tried really hard to fix something totally beyond your ability? How did it feel when someone stepped in and fixed it?" Connect this to what Jesus does for us.</p></div>
+          </div>
+          <div class="sec" id="l2s3">
+            <p class="sechead">Knowing Jesus is God gives us confidence</p><p class="secsub">He has the power to save and keep us — forever</p>
+            <div class="strow"><div class="stnum">1</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bp">Godhead</span><p class="ptitle">One God in three Persons</p><p class="pbody">Father, Son, Holy Spirit — each fully God, eternally distinct.</p></div></div>
+            <div class="strow"><div class="stnum">2</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bt">Jesus is God</span><p class="ptitle">Became man to pay for sin</p><p class="pbody">His sacrifice is perfect and sufficient because He is the eternal, unchanging God.</p></div></div>
+            <div class="strow"><div class="stnum">3</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge ba">Our need</span><p class="ptitle">Total depravity → total grace</p><p class="pbody">We can't save ourselves, so God saves us completely. His grace covers everything.</p></div></div>
+          </div>
+        </div>
+
+        <!-- LESSON 4 -->
+        <div class="lesson" id="l3">
+          <div class="lhead"><p class="lnum">Lesson 4</p><p class="ltitle-inner">Total Depravity</p><p class="lsub-inner">Why every person needs a Savior — and why that's good news</p></div>
+          <div class="sec-tabs">
+            <button class="stab on" onclick="showSec(3,0)">What it means</button>
+            <button class="stab" onclick="showSec(3,1)">The problem</button>
+            <button class="stab" onclick="showSec(3,2)">Good news</button>
+            <button class="stab" onclick="showSec(3,3)">Summary</button>
+          </div>
+          <div class="sec on" id="l3s0">
+            <p class="sechead">What Total Depravity really means</p><p class="secsub">The condition every person is born into</p>
+            <div class="g2">
+              <div class="card cc"><span class="cbadge bc">What it doesn't mean</span><p class="ptitle">Not "as evil as possible"</p><p class="pbody">You can still be kind, honest, and helpful to others. Total depravity isn't about maximum badness.</p></div>
+              <div class="card cp"><span class="cbadge bp">What it does mean</span><p class="ptitle">Spiritually dead from birth</p><p class="pbody">Our relationship with God is broken from the start. Even our "good" deeds aren't done from love for God.</p></div>
+            </div>
+            <div class="card ca"><span class="cbadge ba">The broken engine</span><p class="ptitle">Shiny outside, dead inside</p><p class="pbody">A car might look perfect — but if the engine is broken, it can't actually run. Sin is that broken engine in our hearts. We can function outwardly but we can't truly connect with God on our own.</p></div>
+          </div>
+          <div class="sec" id="l3s1">
+            <p class="sechead">The problem: we are "at enmity"</p><p class="secsub">Our hearts naturally act like enemies of God</p>
+            <div class="vbox"><p class="vtext">"The mind that is set on the flesh is hostile to God, for it does not submit to God's law; indeed, it cannot."</p><p class="vref">Romans 8:7</p></div>
+            <div class="card cc"><span class="cbadge bc">Enemy analogy</span><p class="ptitle">A heart that won't yield</p><p class="pbody">A sworn enemy might be able to do something "nice" — but their heart blocks it because they have no love. Before salvation, we are like that toward God. We prefer ourselves over Him in every choice.</p></div>
+            <div class="card"><span class="cbadge bg">Key truth</span><p class="ptitle">Even our best isn't good enough</p><p class="pbody">The Bible says even our very best deeds are like "filthy rags" compared to how perfectly holy God is. This isn't to shame us — it's to show us how much we need Him.</p></div>
+          </div>
+          <div class="sec" id="l3s2">
+            <p class="sechead">Why this is actually good news</p><p class="secsub">Understanding our need is the first step to receiving grace</p>
+            <div class="vbox"><p class="vtext">"For all have sinned and fall short of the glory of God, and are justified by his grace as a gift, through the redemption that is in Christ Jesus."</p><p class="vref">Romans 3:23–24</p></div>
+            <div class="strow"><div class="stnum">1</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bt">No more stress</span><p class="ptitle">Stop trying to be "perfect enough"</p><p class="pbody">Once you know you can't fix it yourself, you can stop exhausting yourself trying. God isn't waiting for you to be good enough.</p></div></div>
+            <div class="strow"><div class="stnum">2</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bp">A free gift</span><p class="ptitle">God does all the work</p><p class="pbody">Because we are helpless, God offers salvation completely free. We just trust that Jesus paid the full price on the cross.</p></div></div>
+            <div class="strow"><div class="stnum">3</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge ba">New life</span><p class="ptitle">He gives us a new nature</p><p class="pbody">God doesn't just forgive us — He gives us a brand new heart and a new ability to love Him. This is grace.</p></div></div>
+            <div class="abox"><p class="alabel">Closing reflection</p><p class="atext">Knowing we are "totally depraved" helps us see just how incredible God is for loving us and saving us anyway. How does understanding your need for grace make you feel toward God?</p></div>
+          </div>
+          <div class="sec" id="l3s3">
+            <p class="sechead">The big picture</p><p class="secsub">Three truths about Total Depravity</p>
+            <div class="card cp"><span class="cbadge bp">Truth 1</span><p class="ptitle">We are born spiritually stuck</p><p class="pbody">We cannot fix our relationship with God on our own — no matter how hard we try.</p></div>
+            <div class="card ca"><span class="cbadge ba">Truth 2</span><p class="ptitle">Our motives are off</p><p class="pbody">Even when we do good things, the motive is usually about ourselves rather than love for God.</p></div>
+            <div class="card ct"><span class="cbadge bt">Truth 3</span><p class="ptitle">God does all the work</p><p class="pbody">Because we can't save ourselves, God gives us a new nature and new life as a completely free gift through faith in Jesus.</p></div>
+            <div class="fbtns"><button class="fbtn pr">Explore grace in Paul's letters ↗</button></div>
+          </div>
+        </div>
+
+        <!-- LESSON 5 -->
+        <div class="lesson" id="l4">
+          <div class="lhead"><p class="lnum">Lesson 5</p><p class="ltitle-inner">The Ministry</p><p class="lsub-inner">Called to share — the Great Commission for every believer</p></div>
+          <div class="sec-tabs">
+            <button class="stab on" onclick="showSec(4,0)">What is it?</button>
+            <button class="stab" onclick="showSec(4,1)">Why do it?</button>
+            <button class="stab" onclick="showSec(4,2)">How to do it</button>
+            <button class="stab" onclick="showSec(4,3)">Take action</button>
+          </div>
+          <div class="sec on" id="l4s0">
+            <p class="sechead">What is the ministry?</p><p class="secsub">Understanding what we mean when we talk about "the ministry"</p>
+            <div class="vbox"><p class="vtext">"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you."</p><p class="vref">Matthew 28:19–20</p></div>
+            <div class="card cp"><span class="cbadge bp">Definition</span><p class="ptitle">The ministry = sharing the Good News</p><p class="pbody">The ministry is the work of telling others about Jesus — His love, His sacrifice, and the hope of salvation. It's not just for pastors or adults. Every follower of Christ is called to do it.</p></div>
+            <div class="g2">
+              <div class="card"><span class="cbadge bt">Word</span><p class="ptitle">Evangelize</p><p class="pbody">To share the gospel — Jesus died and rose again so we can be forgiven and have eternal life.</p></div>
+              <div class="card"><span class="cbadge ba">Word</span><p class="ptitle">Witness</p><p class="pbody">To be a living example. Your life, words, and character all point others toward God.</p></div>
+            </div>
+            <div class="abox"><p class="alabel">Quick discussion</p><p class="atext">Have you ever told a friend about something that excited you — a movie, food, or a game? How easy was it? Why do we sometimes find it harder to talk about Jesus?</p></div>
+          </div>
+          <div class="sec" id="l4s1">
+            <p class="sechead">Why do the ministry?</p><p class="secsub">Three big reasons God calls us to share</p>
+            <div class="vbox"><p class="vtext">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p><p class="vref">John 3:16</p></div>
+            <div class="strow"><div class="stnum">1</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bp">Reason</span><p class="ptitle">Because people matter to God</p><p class="pbody">Every person around you is deeply loved by God. When we share, we partner with God's greatest desire: that all people would know His love.</p></div></div>
+            <div class="strow"><div class="stnum">2</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge bt">Reason</span><p class="ptitle">Because we've been transformed</p><p class="pbody">If God has changed your life — given you peace, forgiveness, or hope — that story is powerful. Your testimony is a tool God can use to reach someone else.</p></div></div>
+            <div class="strow"><div class="stnum">3</div><div class="card" style="flex:1;margin-bottom:0;"><span class="cbadge ba">Reason</span><p class="ptitle">Because Jesus commanded it</p><p class="pbody">The Great Commission isn't a suggestion — it's a command for every believer, including young people.</p></div></div>
+            <div class="abox"><p class="alabel">Reflection</p><p class="atext">Write one sentence: "My life changed when I met Jesus because ___." Share with a partner. These are the beginnings of your personal testimonies.</p></div>
+          </div>
+          <div class="sec" id="l4s2">
+            <p class="sechead">How do we do it?</p><p class="secsub">Practical steps — no seminary degree needed</p>
+            <div class="vbox"><p class="vtext">"Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect."</p><p class="vref">1 Peter 3:15</p></div>
+            <div class="card ct"><span class="cbadge bt">Step 1</span><p class="ptitle">Pray first</p><p class="pbody">Before you say a word, ask God to open doors and soften hearts. Ministry begins on your knees, not just with your mouth.</p></div>
+            <div class="card cp"><span class="cbadge bp">Step 2</span><p class="ptitle">Build genuine relationships</p><p class="pbody">People don't care what you know until they know that you care. Be a real friend — listen, help, show up. Friendship is the bridge the gospel walks across.</p></div>
+            <div class="card ca"><span class="cbadge ba">Step 3</span><p class="ptitle">Share your testimony</p><p class="pbody">Life before Jesus → How I met Jesus → Life after Jesus. Keep it short, real, and personal. No one can argue with your own experience.</p></div>
+            <div class="card cc"><span class="cbadge bc">Step 4</span><p class="ptitle">Present the gospel clearly</p><p class="pbody">God loves us → sin separates us → Jesus bridged the gap → we must choose to receive Him. Invite them to pray to accept Christ.</p></div>
+            <div class="abox"><p class="alabel">Practice activity</p><p class="atext">Pair up. Person A shares their 2-minute testimony. Person B listens, then asks one natural question. Switch. Practice makes it feel natural — not scripted.</p></div>
+          </div>
+          <div class="sec" id="l4s3">
+            <p class="sechead">Your next step</p><p class="secsub">The ministry starts with one person, one conversation</p>
+            <div class="vbox"><p class="vtext">"Don't let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."</p><p class="vref">1 Timothy 4:12</p></div>
+            <div class="card cp"><span class="cbadge bp">Challenge</span><p class="ptitle">Name one person this week</p><p class="pbody">Write down the name of one person you know who doesn't know Jesus. Commit to praying for them every day and looking for one natural opportunity to share God's love with them.</p></div>
+            <div class="g2">
+              <div class="card ct"><p class="ptitle">Do this week</p><p class="pbody">Pray for your one person daily. Send them a kind message. Invite them to hang out.</p></div>
+              <div class="card ca"><p class="ptitle">Remember this</p><p class="pbody">You plant the seed. God makes it grow. Your job is to be faithful, not to force results.</p></div>
+            </div>
+            <div class="abox"><p class="alabel">Group closing prayer</p><p class="atext">Each person prays one sentence for their "one person." Close with: "We are not too young, too quiet, or too new. We are exactly who God wants to use."</p></div>
+            <div class="fbtns">
+              <button class="fbtn pr">Help me write my testimony ↗</button>
+              <button class="fbtn">More scriptures ↗</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end lv-body -->
+    </div><!-- end lesson-viewer -->
+  </div><!-- end dash-body -->
+</div><!-- end #dashboard -->
+
 
 <script>
-  /* ── Modal open / close ── */
-  function openModal(e) {
-    if (e) e.preventDefault();
-    document.getElementById('enrollModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-    // Reset the modal to top when reopened
-    document.getElementById('modalBox').scrollTop = 0;
-  }
+/* ── Login / logout ──────────────────────────────────────────────── */
+const USERS = { teacher: 'grace2026' };
 
-  function closeModal() {
-    document.getElementById('enrollModal').classList.remove('active');
-    document.body.style.overflow = '';
+function doLogin() {
+  const u = document.getElementById('uname').value.trim();
+  const p = document.getElementById('pw').value;
+  const err = document.getElementById('lerr');
+  if (USERS[u] && USERS[u] === p) {
+    err.style.display = 'none';
+    document.getElementById('site').style.display = 'none';
+    const dash = document.getElementById('dashboard');
+    dash.style.display = 'block';
+    window.scrollTo({ top: 0 });
+    showLesson(0);
+  } else {
+    err.style.display = 'block';
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
   }
+}
+function doLogout() {
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('site').style.display = 'block';
+  document.getElementById('uname').value = '';
+  document.getElementById('pw').value = '';
+  window.scrollTo({ top: 0 });
+}
 
-  // Close on overlay click (outside the box)
-  document.getElementById('enrollModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+/* ── Lesson navigation ───────────────────────────────────────────── */
+const lPcts = ['20%','40%','60%','80%','100%'];
+function showLesson(i) {
+  document.querySelectorAll('.lesson').forEach((l,idx) => l.classList.toggle('on', idx===i));
+  document.querySelectorAll('.ltab').forEach((t,idx) => t.classList.toggle('on', idx===i));
+  document.getElementById('pf').style.width = lPcts[i];
+  const secs = document.querySelectorAll('#l'+i+' .sec');
+  const tabs = document.querySelectorAll('#l'+i+' .stab');
+  secs.forEach((s,idx) => s.classList.toggle('on', idx===0));
+  tabs.forEach((t,idx) => t.classList.toggle('on', idx===0));
+}
+function showSec(li, si) {
+  document.querySelectorAll('#l'+li+' .sec').forEach((s,idx) => s.classList.toggle('on', idx===si));
+  document.querySelectorAll('#l'+li+' .stab').forEach((t,idx) => t.classList.toggle('on', idx===si));
+}
+
+/* ── Modal ───────────────────────────────────────────────────────── */
+function openModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('enrollModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalBox').scrollTop = 0;
+}
+function closeModal() {
+  document.getElementById('enrollModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('enrollModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ── Form submission ─────────────────────────────────────────────── */
+async function handleSubmit(e) {
+  e.preventDefault();
+  const required = { fname:'First name', lname:'Last name', age:'Age', sex:'Sex', email:'Email address', phone:'Mobile number', church:'Local Grace church', pastor:'Pastor / Bible Woman name', motivation:'Motivation' };
+  for (const [id, label] of Object.entries(required)) {
+    if (!document.getElementById(id).value.trim()) { alert('Please fill in: ' + label); return; }
+  }
+  if (!document.querySelector('input[name=avail]:checked'))      { alert('Please answer: attendance availability'); return; }
+  if (!document.querySelector('input[name=internet]:checked'))   { alert('Please answer: internet access'); return; }
+  if (!document.querySelector('input[name=familiarity]:checked')) { alert('Please answer: familiarity with TCM doctrines'); return; }
+  for (const id of ['agree1','agree2','agree3','agree4']) {
+    if (!document.getElementById(id).checked) { alert('Please agree to all terms before submitting.'); return; }
+  }
+  const form = document.getElementById('form-area');
+  try {
+    const response = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      document.getElementById('modalBox').scrollTop = 0;
+    } else {
+      alert('There was a problem submitting your form. Please try again.');
+    }
+  } catch(err) {
+    alert('Network error. Please check your connection and try again.');
+  }
+}
+
+/* ── Smooth scroll for nav ───────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }); }
   });
-
-  // Close on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  /* ── Form submission ── */
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    const required = {
-      fname: 'First name', lname: 'Last name', age: 'Age', sex: 'Sex',
-      email: 'Email address', phone: 'Mobile number',
-      church: 'Local Grace church', pastor: 'Pastor / Bible Woman name',
-      motivation: 'Motivation'
-    };
-    for (const [id, label] of Object.entries(required)) {
-      if (!document.getElementById(id).value.trim()) {
-        alert('Please fill in: ' + label); return;
-      }
-    }
-    if (!document.querySelector('input[name=avail]:checked')) {
-      alert('Please answer: attendance availability'); return;
-    }
-    if (!document.querySelector('input[name=internet]:checked')) {
-      alert('Please answer: internet access'); return;
-    }
-    if (!document.querySelector('input[name=familiarity]:checked')) {
-      alert('Please answer: familiarity with TCM doctrines'); return;
-    }
-    for (const id of ['agree1','agree2','agree3','agree4']) {
-      if (!document.getElementById(id).checked) {
-        alert('Please agree to all terms before submitting.'); return;
-      }
-    }
-
-    const form = document.getElementById('form-area');
-    const data = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        form.style.display = 'none';
-        document.getElementById('success').style.display = 'block';
-        document.getElementById('modalBox').scrollTop = 0;
-      } else {
-        alert('There was a problem submitting your form. Please try again.');
-      }
-    } catch (err) {
-      alert('Network error. Please check your connection and try again.');
-    }
-  }
+});
 </script>
 </body>
 </html>
